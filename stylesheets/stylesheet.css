@@ -275,6 +275,16 @@ Full-Width Styles
   float: left;
 }
 
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; color: #fff;}
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px;  }
+/* your colors */
+.legend .green { background-color: #008000; }
+.legend .level1 { background-color: #FFFF00; }
+.legend .level2 { background-color: #FF4500; }
+.legend .level3 { background-color: #FF0000; }
+
+
 .outer {
   width: 100%;
 }
