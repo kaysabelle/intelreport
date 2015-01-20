@@ -259,6 +259,21 @@ form {
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
+.three_gauges {
+  width: 200px;
+  float: left;
+}
+
+.two_gauges {
+  height: 240px;
+  float: left;
+}
+
+.four_gauges {
+  width: 150px;
+  height: 120px;
+  float: left;
+}
 
 .outer {
   width: 100%;
@@ -361,6 +376,15 @@ Full-Width Styles
   border-bottom: 1px solid #111;
 }
 
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    }
+
+
 #main_content {
   padding-top: 40px;
 }
@@ -423,5 +447,7 @@ Small Device Styles
     max-width: 480px;
     font-size: 11px;
   }
+
+
 
 }

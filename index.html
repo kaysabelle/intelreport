@@ -12,8 +12,7 @@
 
     <script src="javascripts/tabletop.js"></script>
 
-
-    <title>INTEL REPORT</title>
+    <title>CAL FIRE SLU INTEL Report</title>
   </head>
 
   <body>
@@ -23,7 +22,7 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/kaysabelle/intelreport">View on GitHub</a>
 
-          <h1 id="project_title">INTEL REPORT</h1>
+          <h1 id="project_title">CAL FIRE SLU INTEL Report</h1>
           <h2 id="project_tagline">Resources Available in Unit</h2>
 
             <!--<section id="downloads">
@@ -34,17 +33,33 @@
     </div>
 
     <!-- MAIN CONTENT --> 
-    <div id="main_content_wrap" class="outer">
-      <div id="firstrow" style="height:100%; margin-left:auto; margin-right:auto; text-align:center;">
-        <div id="airattack" class="200x160px" style="float:left;"></div>
-        <div id="airtankers" class="200x160px" style="float:left;"></div>
-        <div id="copters" class="200x160px" style="float:left;"></div>
-      </div>
-      <div id="secondrow" style="height:160px; text-align:center;">
-        <div id="battalionchiefs" class="200x160px" style="float:left;"></div>
-        <div id="type3enginesslu" class="200x160px" style="float:left;"></div>
-        <div id="type2enginesslc" class="200x160px" style="float:left;"></div>
-      </div>
+    <div id="main_content_wrap" class="outer clearfix">
+      <section id="main-content" class="inner">
+        <div id="firstrow" style="text-align:center; clear:both;">
+          <div id="airattack" class="three_gauges"></div>
+          <div id="airtankers"class="three_gauges"></div>
+          <div id="copters" class="three_gauges"></div>
+        </div>
+        <div id="secondrow" style="text-align:center;s clear:both;">
+          <div id="battalionchiefs" class="three_gauges"></div>
+          <div id="type3enginesslu" class="three_gauges"></div>
+          <div id="type2enginesslc" class="three_gauges"></div>
+        </div>
+        <div id="thirdrow" style="text-align:center">
+          <div id="watertenders" class="two_gauges"></div>
+          <div id="dozers" class="two_gauges"></div>
+        </div>
+        <div id="fourthrow" style="text-align:center">
+          <div id="cuestacamp" class="two_gauges"></div>
+          <div id="venturacamp" class="two_gauges"></div>
+        </div>
+        <div id="fifthrow" style="text-align:center">
+          <div id="overhead" class="four_gauges"></div>
+          <div id="medics" class="four_gauges"></div>
+          <div id="mechanics" class="four_gauges"></div>
+          <div id="dozeroperators" class="four_gauges"></div>
+        </div>
+      </section>
     </div>
 
     <script>
@@ -69,7 +84,7 @@
 
         var aa = new JustGage({
           id: "airattack",
-          value: 2,
+          value: 1,
           min: 0,
           max: 3,
           valueFontColor: "white",
@@ -97,7 +112,7 @@
           title: "Copters"
         });
 
-        var aa = new JustGage({
+        var bc = new JustGage({
           id: "battalionchiefs",
           value: 2,
           min: 0,
@@ -107,7 +122,7 @@
           title: "Battalion Chiefs"
         });
 
-        var at = new JustGage({
+        var t3 = new JustGage({
           id: "type3enginesslu",
           value: 10,
           min: 0,
@@ -117,7 +132,7 @@
           title: "Type III Engines SLU"
         });
 
-        var c = new JustGage({
+        var t2 = new JustGage({
           id: "type2enginesslc",
           value: 14,
           min: 0,
@@ -126,6 +141,88 @@
           levelColors: resourceLevelColors,
           title: "Type II Engines SLC"
         });
+
+        var wt = new JustGage({
+          id: "watertenders",
+          value: 2,
+          min: 0,
+          max: 3,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Water Tenders"
+        });
+
+        var d = new JustGage({
+          id: "dozers",
+          value: 2,
+          min: 0,
+          max: 3,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Dozers"
+        });
+
+        var cc = new JustGage({
+          id: "cuestacamp",
+          value: 2,
+          min: 0,
+          max: 6,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Cuesta Camp"
+        });
+
+        var vc = new JustGage({
+          id: "venturacamp",
+          value: 1,
+          min: 0,
+          max: 3,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Ventura Camp"
+        });
+
+        var overhead = new JustGage({
+          id: "overhead",
+          value: 110,
+          min: 0,
+          max: 200,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Overhead"
+        });
+
+        var medics = new JustGage({
+          id: "medics",
+          value: 5,
+          min: 0,
+          max: 18,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Medics"
+        });
+
+        var mechanics = new JustGage({
+          id: "mechanics",
+          value: 4,
+          min: 0,
+          max: 4,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Mechanics"
+        });
+
+        var dozerOperators = new JustGage({
+          id: "dozeroperators",
+          value: 2,
+          min: 0,
+          max: 5,
+          valueFontColor: "white",
+          levelColors: resourceLevelColors,
+          title: "Dozer Operators"
+        });
+
+
       </script>
 
     <!-- FOOTER  -->
