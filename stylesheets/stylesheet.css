@@ -264,8 +264,8 @@ Full-Width Styles
   float: left;
 }
 
-.two_gauges {
-  height: 240px;
+.two_gauges{
+  width: 300px;
   float: left;
 }
 
