@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
     <script src="javascripts/raphael.2.1.0.min.js"></script>
     <script src="javascripts/justgage.1.0.1.min.js"></script>
-
     <script src="javascripts/tabletop.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
     <title>CAL FIRE SLU INTEL Report</title>
   </head>
@@ -23,12 +23,10 @@
           <a id="forkme_banner" href="https://github.com/kaysabelle/intelreport">View on GitHub</a>
 
           <h1 id="project_title">CAL FIRE SLU INTEL Report</h1>
-          <h2 id="project_tagline">Resources Available in Unit - updated 8/15/2014 @ 1600 hrs</h2>
+          <h2 id="project_tagline">Resources Available in Unit, updated
+            <b id="timestamp"></b>
+          </h2>
 
-            <!--<section id="downloads">
-              <a class="zip_download_link" href="https://github.com/kaysabelle/intelreport/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/kaysabelle/intelreport/tarball/master">Download this project as a tar.gz file</a>
-            </section> -->
         </header>
     </div>
 
@@ -44,7 +42,6 @@
           <li><span class="level3"></span> LEVEL 3: Less than 25%</li><br />
         </ul>
       </div>
-      
 
         <div id="firstrow" style="text-align:center; clear:both;">
           <div id="airattack" class="three_gauges"></div>
@@ -76,26 +73,49 @@
     <script>
         window.onload = function() { init() };
         var reportData;
+        window.gaugeValue = 0;
 
-        var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/14oY5jJboGdnBFSWEjKF7R_85afMFjzdyJKJIH9SPmeo/pubhtml';
+        /* Link to the public Google Sheet */
+        var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/14oY5jJboGdnBFSWEjKF7R_85afMFjzdyJKJIH9SPmeo/pubhtml?gid=1010805911&single=true';
 
+        /* Initializes Tabletop, asking for the rows in the "Results" sheet */
         function init() {
             Tabletop.init( { key: public_spreadsheet_url,
                              callback: showInfo,
+                             debug: true,
+                             wanted: ["Results"],
+                             parseNumbers: true,
                              simpleSheet: true } )
         }
 
+        /* Populate gauge values */
         function showInfo(data) {
           reportData = data;
-          alert("Successfully processed!")
-          console.log(data);
+          console.log(reportData);
+          gauge_airattack.refresh(data[0].AIR_ATTACK);
+          gauge_airtankers.refresh(data[0].AIR_TANKERS);
+          gauge_battalionchiefs.refresh(data[0].BATTALION_CHIEFS);
+          gauge_copters.refresh(data[0].COPTERS);
+          gauge_type3engines.refresh(data[0].TYPE_III_ENGINES_SLU);
+          gauge_type2engines.refresh(data[0].TYPE_II_ENGINES_SLC);
+          gauge_watertenders.refresh(data[0].WATER_TENDERS);
+          gauge_dozers.refresh(data[0].DOZERS);
+          gauge_cuestacamp.refresh(data[0].CUESTA_CAMP);
+          gauge_venturacamp.refresh(data[0].VENTURA_CAMP);
+          gauge_overhead.refresh(data[0].OVERHEAD);
+          gauge_medics.refresh(data[0].MEDICS);
+          gauge_mechanics.refresh(data[0].MECHANICS);
+          gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
+
+          document.getElementById("timestamp").innerHTML = data[0].Timestamp;
         }        
 
+        /* Gauge colors (red, orange, yellow, green) - must be in hex format */
         var resourceLevelColors = ["#FF0000", "#FF4500", "#FFFF00", "#008000"];
 
-        var aa = new JustGage({
+        var gauge_airattack = new JustGage({
           id: "airattack",
-          value: 1,
+          value: 0,
           min: 0,
           max: 3,
           valueFontColor: "white",
@@ -103,9 +123,10 @@
           title: "Air Attack"
         });
 
-        var at = new JustGage({
+
+        var gauge_airtankers = new JustGage({
           id: "airtankers",
-          value: 2,
+          value: 0,
           min: 0,
           max: 3,
           valueFontColor: "white",
@@ -113,9 +134,9 @@
           title: "Air Tankers"
         });
 
-        var c = new JustGage({
+        var gauge_copters = new JustGage({
           id: "copters",
-          value: 2,
+          value: 0,
           min: 0,
           max: 3,
           valueFontColor: "white",
@@ -123,9 +144,9 @@
           title: "Copters"
         });
 
-        var bc = new JustGage({
+        var gauge_battalionchiefs = new JustGage({
           id: "battalionchiefs",
-          value: 2,
+          value: 0,
           min: 0,
           max: 11,
           valueFontColor: "white",
@@ -133,9 +154,9 @@
           title: "Battalion Chiefs"
         });
 
-        var t3 = new JustGage({
+        var gauge_type3engines = new JustGage({
           id: "type3enginesslu",
-          value: 10,
+          value: 0,
           min: 0,
           max: 12,
           valueFontColor: "white",
@@ -143,9 +164,9 @@
           title: "Type III Engines SLU"
         });
 
-        var t2 = new JustGage({
+        var gauge_type2engines = new JustGage({
           id: "type2enginesslc",
-          value: 14,
+          value: 0,
           min: 0,
           max: 14,
           valueFontColor: "white",
@@ -153,9 +174,9 @@
           title: "Type II Engines SLC"
         });
 
-        var wt = new JustGage({
+        var gauge_watertenders = new JustGage({
           id: "watertenders",
-          value: 2,
+          value: 0,
           min: 0,
           max: 3,
           valueFontColor: "white",
@@ -163,9 +184,9 @@
           title: "Water Tenders"
         });
 
-        var d = new JustGage({
+        var gauge_dozers = new JustGage({
           id: "dozers",
-          value: 2,
+          value: 0,
           min: 0,
           max: 3,
           valueFontColor: "white",
@@ -173,9 +194,9 @@
           title: "Dozers"
         });
 
-        var cc = new JustGage({
+        var gauge_cuestacamp = new JustGage({
           id: "cuestacamp",
-          value: 2,
+          value: 0,
           min: 0,
           max: 6,
           valueFontColor: "white",
@@ -183,9 +204,9 @@
           title: "Cuesta Camp"
         });
 
-        var vc = new JustGage({
+        var gauge_venturacamp = new JustGage({
           id: "venturacamp",
-          value: 1,
+          value: 0,
           min: 0,
           max: 3,
           valueFontColor: "white",
@@ -193,9 +214,9 @@
           title: "Ventura Camp"
         });
 
-        var overhead = new JustGage({
+        var gauge_overhead = new JustGage({
           id: "overhead",
-          value: 110,
+          value: 0,
           min: 0,
           max: 200,
           valueFontColor: "white",
@@ -203,9 +224,9 @@
           title: "Overhead"
         });
 
-        var medics = new JustGage({
+        var gauge_medics = new JustGage({
           id: "medics",
-          value: 5,
+          value: 0,
           min: 0,
           max: 18,
           valueFontColor: "white",
@@ -213,9 +234,9 @@
           title: "Medics"
         });
 
-        var mechanics = new JustGage({
+        var gauge_mechanics = new JustGage({
           id: "mechanics",
-          value: 4,
+          value: 0,
           min: 0,
           max: 4,
           valueFontColor: "white",
@@ -223,16 +244,15 @@
           title: "Mechanics"
         });
 
-        var dozerOperators = new JustGage({
+        var gauge_dozerOperators = new JustGage({
           id: "dozeroperators",
-          value: 2,
+          value: 0,
           min: 0,
           max: 5,
           valueFontColor: "white",
           levelColors: resourceLevelColors,
           title: "Dozer Operators"
         });
-
 
       </script>
 
