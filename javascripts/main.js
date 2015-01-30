@@ -10,6 +10,8 @@ function init() {
                      wanted: ["Sheet1"],
                      parseNumbers: true,
                      simpleSheet: true } );
+
+    getWeatherState();
 }
 
 function getData(data) {
@@ -178,5 +180,17 @@ function showInfo(data) {
 
 // Access pre tag of document
 function getWeatherState() {
-	document.getElementsByTagName ('PRE')[0].firstChild.data = document.getElementsByTagName ('PRE')[0].firstChild.data.replace (/\t+$/, '');
+	// document.getElementsByTagName ('PRE')[0].firstChild.data = document.getElementsByTagName ('PRE')[0].firstChild.data.replace (/\t+$/, '');
+  console.log("get weather state");
+
+  $.ajax({
+    url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
+    type: 'GET',
+    success: function(res) {
+        console.log(res);
+        $("#weatherState").html("weather state");
+    }
+  });
 }
+
+
