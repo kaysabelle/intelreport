@@ -4,18 +4,19 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="INTEL REPORT : ">
+    <meta name="description" content="INTEL REPORT">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
     <script src="javascripts/raphael.2.1.0.min.js"></script>
     <script src="javascripts/justgage.1.0.1.min.js"></script>
     <script src="javascripts/tabletop.js"></script>
+    <script src="javascripts/main.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
     <title>CAL FIRE SLU INTEL Report</title>
   </head>
 
-  <body>
+  <body onload="init()">
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
@@ -23,238 +24,113 @@
           <a id="forkme_banner" href="https://github.com/kaysabelle/intelreport">View on GitHub</a>
 
           <h1 id="project_title">CAL FIRE SLU INTEL Report</h1>
-          <h2 id="project_tagline">Resources Available in Unit, updated
-            <b id="timestamp"></b>
-          </h2>
-
+          <h2 id="project_tagline">Updated <b id="timestamp" style="color: #66D9EF;"></b></h2>
+          <p><a href="#resources">Resources</a> | <a href="#staffing">Staffing Patterns</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind & Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#region">Region</a> | <a href="#incidents"> Incidents</a></p>
         </header>
     </div>
 
     <!-- MAIN CONTENT --> 
     <div id="main_content_wrap" class="outer clearfix">
       <section id="main-content" class="inner">
-      <div>
-        <ul class="legend">
-          <p style="color:#fff;">LEGEND</p>
-          <li><span class="green"></span> Resources greater than 75%</li><br />
-          <li><span class="level1"></span> LEVEL 1: 75% to 50%</li><br />
-          <li><span class="level2"></span> LEVEL 2: 50% to 25%</li><br />
-          <li><span class="level3"></span> LEVEL 3: Less than 25%</li><br />
-        </ul>
-      </div>
 
-        <div id="firstrow" style="text-align:center; clear:both;">
-          <div id="airattack" class="three_gauges"></div>
-          <div id="airtankers"class="three_gauges"></div>
-          <div id="copters" class="three_gauges"></div>
+
+        <div style="clear:both;">
+          <h3><a name="duty">Duty</a></h3><hr>
+          <div id="duty">
+            <table>
+              <tr>
+                <td>Duty Chief</td>
+                <td id="dutychief">Retrieving data...</td>
+              </tr>
+                <td>Duty Investigator</td>
+                <td id="investigator">Retrieving data...</td>
+              <tr>
+                <td>ECC Duty Officer</td>
+                <td id="eccofficer">Retrieving data...</td>
+              </tr>
+              <tr>
+                <td>Incident Management Team On Call</td>
+                <td id="incidentmgmt">Retrieving data...</td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <div id="secondrow" style="text-align:center; clear:both;">
-          <div id="battalionchiefs" class="three_gauges"></div>
-          <div id="type3enginesslu" class="three_gauges"></div>
-          <div id="type2enginesslc" class="three_gauges"></div>
+        
+        <div style="clear:both;">
+          <h3><a name="resources">Resources Available in Unit</a></h3>
+          <hr>
+          <div id="gaugeLegend">
+            <ul class="legend">
+              <p>LEGEND</p>
+              <li><span class="green"></span> Resources greater than 75%</li><br />
+              <li><span class="level1"></span> LEVEL 1: 75% to 50%</li><br />
+              <li><span class="level2"></span> LEVEL 2: 50% to 25%</li><br />
+              <li><span class="level3"></span> LEVEL 3: Less than 25%</li><br />
+            </ul>
+          </div>
+          <div id="gauges">
+            <div id="firstrow" style="width: 100%; margin: 0 auto; text-align:center; clear:both;">
+              <div id="airattack" class="three_gauges"></div>
+              <div id="airtankers"class="three_gauges"></div>
+              <div id="copters" class="three_gauges"></div>
+            </div>
+            <div id="secondrow" style="text-align:center; clear:both;">
+              <div id="battalionchiefs" class="three_gauges"></div>
+              <div id="type3enginesslu" class="three_gauges"></div>
+              <div id="type2enginesslc" class="three_gauges"></div>
+            </div>
+            <div id="thirdrow" style="text-align:center; clear:both;">
+              <div id="watertenders" class="two_gauges"></div>
+              <div id="dozers" class="two_gauges"></div>
+            </div>
+            <div id="fourthrow" style="text-align:center; clear:both;">
+              <div id="cuestacamp" class="two_gauges"></div>
+              <div id="venturacamp" class="two_gauges"></div>
+            </div>
+            <div id="fifthrow" style="text-align:center; clear:both;">
+              <div id="overhead" class="four_gauges"></div>
+              <div id="medics" class="four_gauges"></div>
+              <div id="mechanics" class="four_gauges"></div>
+              <div id="dozeroperators" class="four_gauges"></div>
+            </div>
+          </div>
+          
+        </div><br /><br />
+        
+        <div style="clear:both;">
+          <h3><a name="staffing">Staffing Patterns</a></h3><hr>
         </div>
-        <div id="thirdrow" style="text-align:center; clear:both;">
-          <div id="watertenders" class="two_gauges"></div>
-          <div id="dozers" class="two_gauges"></div>
+
+        <div style="clear:both;">
+          <h3><a name="weather">State of the Weather</a></h3><hr>
         </div>
-        <div id="fourthrow" style="text-align:center; clear:both;">
-          <div id="cuestacamp" class="two_gauges"></div>
-          <div id="venturacamp" class="two_gauges"></div>
+
+        <div style="clear:both;">
+          <h3><a name="windtides">State of the Wind and Tides</a></h3><hr>
+          <script type="text/javascript" language="JavaScript" src="http://www.windfinder.com/widget/forecast/js/san_luis_obispo?unit_wave=ft&unit_rain=in&unit_temperature=f&unit_wind=mph&columns=2&days=2&show_day=0"></script>
+          <noscript>
+            <a href='http://www.windfinder.com/forecast/san_luis_obispo?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast'>Wind forecast for San Luis Obispo</a> provided by <a href='http://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo'>windfinder.com</a>
+            </noscript>
         </div>
-        <div id="fifthrow" style="text-align:center; clear:both;">
-          <div id="overhead" class="four_gauges"></div>
-          <div id="medics" class="four_gauges"></div>
-          <div id="mechanics" class="four_gauges"></div>
-          <div id="dozeroperators" class="four_gauges"></div>
+
+        <div style="clear:both;">
+          <h3><a name="fuelmoisture">State of the Fuel Moisture</a></h3><hr>
         </div>
+
+        <div style="clear:both;">
+          <h3><a name="drought">State of the Drought</a></h3><hr>
+        </div>
+
+        <div style="clear:both;">
+          <h3><a name="region">State of the Region</a></h3><hr>
+        </div>
+
+        <div style="clear:both;">
+          <h3><a name="incidents">Active Incidents</a></h3><hr>
+        </div>
+
       </section>
     </div>
-
-    <script>
-        window.onload = function() { init() };
-        var reportData;
-        window.gaugeValue = 0;
-
-        /* Link to the public Google Sheet */
-        var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/14oY5jJboGdnBFSWEjKF7R_85afMFjzdyJKJIH9SPmeo/pubhtml?gid=1010805911&single=true';
-
-        /* Initializes Tabletop, asking for the rows in the "Results" sheet */
-        function init() {
-            Tabletop.init( { key: public_spreadsheet_url,
-                             callback: showInfo,
-                             debug: true,
-                             wanted: ["Results"],
-                             parseNumbers: true,
-                             simpleSheet: true } )
-        }
-
-        /* Populate gauge values */
-        function showInfo(data) {
-          reportData = data;
-          console.log(reportData);
-          gauge_airattack.refresh(data[0].AIR_ATTACK);
-          gauge_airtankers.refresh(data[0].AIR_TANKERS);
-          gauge_battalionchiefs.refresh(data[0].BATTALION_CHIEFS);
-          gauge_copters.refresh(data[0].COPTERS);
-          gauge_type3engines.refresh(data[0].TYPE_III_ENGINES_SLU);
-          gauge_type2engines.refresh(data[0].TYPE_II_ENGINES_SLC);
-          gauge_watertenders.refresh(data[0].WATER_TENDERS);
-          gauge_dozers.refresh(data[0].DOZERS);
-          gauge_cuestacamp.refresh(data[0].CUESTA_CAMP);
-          gauge_venturacamp.refresh(data[0].VENTURA_CAMP);
-          gauge_overhead.refresh(data[0].OVERHEAD);
-          gauge_medics.refresh(data[0].MEDICS);
-          gauge_mechanics.refresh(data[0].MECHANICS);
-          gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
-
-          document.getElementById("timestamp").innerHTML = data[0].Timestamp;
-        }        
-
-        /* Gauge colors (red, orange, yellow, green) - must be in hex format */
-        var resourceLevelColors = ["#FF0000", "#FF4500", "#FFFF00", "#008000"];
-
-        var gauge_airattack = new JustGage({
-          id: "airattack",
-          value: 0,
-          min: 0,
-          max: 3,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Air Attack"
-        });
-
-
-        var gauge_airtankers = new JustGage({
-          id: "airtankers",
-          value: 0,
-          min: 0,
-          max: 3,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Air Tankers"
-        });
-
-        var gauge_copters = new JustGage({
-          id: "copters",
-          value: 0,
-          min: 0,
-          max: 3,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Copters"
-        });
-
-        var gauge_battalionchiefs = new JustGage({
-          id: "battalionchiefs",
-          value: 0,
-          min: 0,
-          max: 11,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Battalion Chiefs"
-        });
-
-        var gauge_type3engines = new JustGage({
-          id: "type3enginesslu",
-          value: 0,
-          min: 0,
-          max: 12,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Type III Engines SLU"
-        });
-
-        var gauge_type2engines = new JustGage({
-          id: "type2enginesslc",
-          value: 0,
-          min: 0,
-          max: 14,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Type II Engines SLC"
-        });
-
-        var gauge_watertenders = new JustGage({
-          id: "watertenders",
-          value: 0,
-          min: 0,
-          max: 3,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Water Tenders"
-        });
-
-        var gauge_dozers = new JustGage({
-          id: "dozers",
-          value: 0,
-          min: 0,
-          max: 3,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Dozers"
-        });
-
-        var gauge_cuestacamp = new JustGage({
-          id: "cuestacamp",
-          value: 0,
-          min: 0,
-          max: 6,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Cuesta Camp"
-        });
-
-        var gauge_venturacamp = new JustGage({
-          id: "venturacamp",
-          value: 0,
-          min: 0,
-          max: 3,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Ventura Camp"
-        });
-
-        var gauge_overhead = new JustGage({
-          id: "overhead",
-          value: 0,
-          min: 0,
-          max: 200,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Overhead"
-        });
-
-        var gauge_medics = new JustGage({
-          id: "medics",
-          value: 0,
-          min: 0,
-          max: 18,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Medics"
-        });
-
-        var gauge_mechanics = new JustGage({
-          id: "mechanics",
-          value: 0,
-          min: 0,
-          max: 4,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Mechanics"
-        });
-
-        var gauge_dozerOperators = new JustGage({
-          id: "dozeroperators",
-          value: 0,
-          min: 0,
-          max: 5,
-          valueFontColor: "white",
-          levelColors: resourceLevelColors,
-          title: "Dozer Operators"
-        });
-
-      </script>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
@@ -263,8 +139,5 @@
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-    
-
   </body>
 </html>
