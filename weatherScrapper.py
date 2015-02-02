@@ -1,5 +1,7 @@
 """
 Python script that scraps the weather information
+
+Writes directly to index.html
 """
 from bs4 import BeautifulSoup
 
@@ -23,4 +25,4 @@ oldTag.string = text
 
 # Writes over the HTMl
 with open("index.html", "wb") as file:
-	file.write(bytes(newSoup.prettify(formatter=None), 'UTF-8'))
+	file.write(bytes(newSoup.prettify(), 'UTF-8'))

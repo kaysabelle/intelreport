@@ -1,127 +1,43 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <meta charset="utf-8"/>
-  <meta content="chrome=1" http-equiv="X-UA-Compatible"/>
-  <meta content="INTEL REPORT" name="description"/>
-  <link href="stylesheets/stylesheet.css" media="screen" rel="stylesheet" type="text/css"/>
-  <script src="javascripts/raphael.2.1.0.min.js">
-  </script>
-  <script src="javascripts/justgage.1.0.1.min.js">
-  </script>
-  <script src="javascripts/tabletop.js">
-  </script>
-  <script src="javascripts/main.js">
-  </script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-  </script>
-  <script src="javascripts/jquery.xdomainajax.js">
-  </script>
-  <title>
-   CAL FIRE SLU INTEL Report
-  </title>
- </head>
- <body onload="init()">
-  <!-- HEADER -->
-  <div class="outer" id="header_wrap">
-   <header class="inner">
-    <a href="https://github.com/kaysabelle/intelreport" id="forkme_banner">
-     View on GitHub
-    </a>
-    <h1 id="project_title">
-     CAL FIRE SLU INTEL Report
-    </h1>
-    <h2 id="project_tagline">
-     Updated
-     <b id="timestamp" style="color: #66D9EF;">
-     </b>
-    </h2>
-    <p>
-     <a href="#resources">
-      Resources
-     </a>
-     |
-     <a href="#staffing">
-      Staffing Patterns
-     </a>
-     |
-     <a href="#weather">
-      Weather
-     </a>
-     |
-     <a href="#windtides">
-      Wind & Tides
-     </a>
-     |
-     <a href="#fuelmoisture">
-      Fuel Moisture
-     </a>
-     |
-     <a href="#drought">
-      Drought
-     </a>
-     |
-     <a href="#region">
-      Region
-     </a>
-     |
-     <a href="#incidents">
-      Incidents
-     </a>
-    </p>
-   </header>
-  </div>
-  <!-- MAIN CONTENT -->
-  <div class="outer clearfix" id="main_content_wrap">
-   <section class="inner" id="main-content">
-    <div style="clear:both;">
-     <h3>
-      <a name="duty">
-       Duty
-      </a>
-     </h3>
-     <hr/>
-     <div id="duty">
-      <table>
-       <tr>
-        <td>
-         Duty Chief
-        </td>
-        <td id="dutychief">
-         Retrieving data...
-        </td>
-       </tr>
-       <td>
-        Duty Investigator
-       </td>
-       <td id="investigator">
-        Retrieving data...
-       </td>
-       <tr>
-        <td>
-         ECC Duty Officer
-        </td>
-        <td id="eccofficer">
-         Retrieving data...
-        </td>
-       </tr>
-       <tr>
-        <td>
-         Incident Management Team On Call
-        </td>
-        <td id="incidentmgmt">
-         Retrieving data...
-        </td>
-       </tr>
-      </table>
-     </div>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="INTEL REPORT">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="javascripts/raphael.2.1.0.min.js"></script>
+    <script src="javascripts/justgage.1.0.1.min.js"></script>
+    <script src="javascripts/tabletop.js"></script>
+    <script src="javascripts/main.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="javascripts/jquery.xdomainajax.js"></script>
+    <script src="javascripts/phantomjs"></script>
+
+    <title>CAL FIRE SLU INTEL Report</title>
+  </head>
+
+  <body onload="init()">
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/kaysabelle/intelreport">View on GitHub</a>
+
+          <h1 id="project_title">CAL FIRE SLU INTEL Report</h1>
+          <h2 id="project_tagline">Updated <b id="timestamp" style="color: #66D9EF;"></b></h2>
+          <p><a href="#resources">Resources</a> | <a href="#staffing">Staffing Patterns</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind & Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#region">Region</a> | <a href="#incidents"> Incidents</a></p>
+        </header>
     </div>
-<<<<<<< Updated upstream
 
     <!-- MAIN CONTENT --> 
     <div id="main_content_wrap" class="outer clearfix">
       <section id="main-content" class="inner">
+
+
         <div style="clear:both;">
+          <h3><a name="duty">Duty</a></h3><hr>
           <div id="duty">
             <table>
               <tr>
@@ -150,13 +66,7 @@
           </div>
           
           <hr>
-          <div id="colorLegend" style="width:100%; clear: both;">
-            <div id="color1" class="legendBlock" style="color:#fff; background-color:#008000">Resources > 75%</div>
-            <div id="color2" class="legendBlock" style="color:#000; background-color:#FFFF00">LEVEL 1: 75% to 50%</div>
-            <div id="color3" class="legendBlock" style="color:#fff; background-color:#FF4500">LEVEL 2: 50% to 25%</div>
-            <div id="color4" class="legendBlock" style="color:#fff; background-color:#FF0000">LEVEL 3: < 25%</div>
-          </div><br /><br />
-          <!--div id="gaugeLegend">
+          <div id="gaugeLegend">
             <ul class="legend">
               <p>LEGEND</p>
               <li><span class="green"></span> Resources greater than 75%</li><br />
@@ -164,7 +74,7 @@
               <li><span class="level2"></span> LEVEL 2: 50% to 25%</li><br />
               <li><span class="level3"></span> LEVEL 3: Less than 25%</li><br />
             </ul>
-          </div-->
+          </div>
           <div id="gauges">
             <div id="firstrow" style="width: 100%; margin: 0 auto; text-align:center; clear:both;">
               <div id="airattack" class="three_gauges"></div>
@@ -205,10 +115,8 @@
           <div style="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="weather">State of the Weather</a></h3><hr>
-            <p id="weatherState"></p>
+            <p id="weatherState"/>zz
           </div>
-          <h5 style="text-align:center;">San Luis Obispo Lightning Tracker</h5>
-          <img src="http://www.sloweather.com/images/lightning.jpg" />
         </div>
 
         <div style="clear:both;">
@@ -219,7 +127,7 @@
           <script type="text/javascript" language="JavaScript" src="http://www.windfinder.com/widget/forecast/js/san_luis_obispo?unit_wave=ft&unit_rain=in&unit_temperature=f&unit_wind=mph&columns=2&days=2&show_day=0"></script>
           <noscript>
             <a href='http://www.windfinder.com/forecast/san_luis_obispo?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast'>Wind forecast for San Luis Obispo</a> provided by <a href='http://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo'>windfinder.com</a>
-          </noscript>
+            </noscript>
         </div>
 
         <div style="clear:both;">
@@ -253,234 +161,14 @@
         </div>
 
       </section>
-=======
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="resources">
-        Resources Available in Unit
-       </a>
-      </h3>
-     </div>
-     <hr/>
-     <div id="gaugeLegend">
-      <ul class="legend">
-       <p>
-        LEGEND
-       </p>
-       <li>
-        <span class="green">
-        </span>
-        Resources greater than 75%
-       </li>
-       <br/>
-       <li>
-        <span class="level1">
-        </span>
-        LEVEL 1: 75% to 50%
-       </li>
-       <br/>
-       <li>
-        <span class="level2">
-        </span>
-        LEVEL 2: 50% to 25%
-       </li>
-       <br/>
-       <li>
-        <span class="level3">
-        </span>
-        LEVEL 3: Less than 25%
-       </li>
-       <br/>
-      </ul>
-     </div>
-     <div id="gauges">
-      <div id="firstrow" style="width: 100%; margin: 0 auto; text-align:center; clear:both;">
-       <div class="three_gauges" id="airattack">
-       </div>
-       <div class="three_gauges" id="airtankers">
-       </div>
-       <div class="three_gauges" id="copters">
-       </div>
-      </div>
-      <div id="secondrow" style="text-align:center; clear:both;">
-       <div class="three_gauges" id="battalionchiefs">
-       </div>
-       <div class="three_gauges" id="type3enginesslu">
-       </div>
-       <div class="three_gauges" id="type2enginesslc">
-       </div>
-      </div>
-      <div id="thirdrow" style="text-align:center; clear:both;">
-       <div class="two_gauges" id="watertenders">
-       </div>
-       <div class="two_gauges" id="dozers">
-       </div>
-      </div>
-      <div id="fourthrow" style="text-align:center; clear:both;">
-       <div class="two_gauges" id="cuestacamp">
-       </div>
-       <div class="two_gauges" id="venturacamp">
-       </div>
-      </div>
-      <div id="fifthrow" style="text-align:center; clear:both;">
-       <div class="four_gauges" id="overhead">
-       </div>
-       <div class="four_gauges" id="medics">
-       </div>
-       <div class="four_gauges" id="mechanics">
-       </div>
-       <div class="four_gauges" id="dozeroperators">
-       </div>
-      </div>
-     </div>
->>>>>>> Stashed changes
     </div>
-    <br/>
-    <br/>
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="staffing">
-        Staffing Patterns
-       </a>
-      </h3>
-      <hr/>
-     </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">INTEL REPORT maintained by <a href="https://github.com/kaysabelle">kaysabelle</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
     </div>
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="weather">
-        State of the Weather
-       </a>
-      </h3>
-      <hr/>
-      <p id="weatherState">
-       923 AM PST MON FEB 2 2015 <br>  A RIDGE OF HIGH PRESSURE WILL BUILD ACROSS SOUTHWEST CALIFORNIA <br>  THROUGH WEDNESDAY WITH DRY CONDITIONS CONTINUING ACROSS THE FIRE <br>  DISTRICT. THE MARINE INVERSION WILL BE SHALLOW TODAY BUT DEEPENS <br>  SLIGHTLY THE NEXT FEW DAYS BRINGING THE POTENTIAL FOR LATE NIGHT AND <br>  MORNING LOW CLOUDS AND FOG TO COASTAL AREAS. TEMPERATURES SHOULD <br>  REMAIN NEAR OR JUST ABOVE NORMAL DURING THE WEEK WITH MOST AREAS <br>  COOLING A FEW DEGREES AFTER TUESDAY. MINIMUM HUMIDITIES WILL BE <br>  LOWEST IN THE MOUNTAINS TODAY AND TUESDAY WITH TEENS AND ISOLATED <br>  SINGLE DIGIT VALUES...THEN A SLOW INCREASE IN HUMIDITIES BEYOND <br>  WEDNESDAY AS ONSHORE FLOW INCREASES. WINDS WILL REMAIN RELATIVELY <br>  LIGHT DURING THE WEEK EXCEPT FOR LOCALLY GUSTY WEST WINDS AT HIGHER <br>  ELEVATIONS AND ACROSS THE ANTELOPE VALLEY EACH AFTERNOON AND EARLY <br>  EVENING.  <br>  THE HIGH PRESSURE RIDGE WILL BREAK DOWN AND SHIFT EASTWARD BY <br>  THURSDAY AND FRIDAY AS A STORM SYSTEM MOVES INTO NORTHERN AREAS OF <br>  THE STATE. INCREASING HUMIDITY AND COOLER TEMPERATURES WILL BE THE <br>  RULE DISTRICT-WIDE AND THERE WILL BE A SLIGHT RISK OF RAIN FROM <br>  SANTA BARBARA COUNTY NORTHWARD LATE FRIDAY OR SATURDAY.
-      </p>
-     </div>
-    </div>
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="windtides">
-        State of the Wind and Tides
-       </a>
-      </h3>
-      <hr/>
-     </div>
-     <script language="JavaScript" src="http://www.windfinder.com/widget/forecast/js/san_luis_obispo?unit_wave=ft&unit_rain=in&unit_temperature=f&unit_wind=mph&columns=2&days=2&show_day=0" type="text/javascript">
-     </script>
-     <noscript>
-      <a href="http://www.windfinder.com/forecast/san_luis_obispo?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast">
-       Wind forecast for San Luis Obispo
-      </a>
-      provided by
-      <a href="http://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo">
-       windfinder.com
-      </a>
-     </noscript>
-    </div>
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="fuelmoisture">
-        State of the Fuel Moisture
-       </a>
-      </h3>
-      <hr/>
-     </div>
-    </div>
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="drought">
-        State of the Drought
-       </a>
-      </h3>
-      <hr/>
-     </div>
-     <img src="http://droughtmonitor.unl.edu/data/jpg/current/current_ca_trd.jpg"/>
-    </div>
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="region">
-        State of the Region
-       </a>
-      </h3>
-      <hr/>
-     </div>
-    </div>
-    <div style="clear:both;">
-     <div style="clear:both;">
-      <p>
-       <a href="#" style="float:right; margin-top: 8px;">
-        TOP
-       </a>
-      </p>
-      <h3>
-       <a name="incidents">
-        Active Incidents
-       </a>
-      </h3>
-      <hr/>
-     </div>
-    </div>
-   </section>
-  </div>
-  <!-- FOOTER  -->
-  <div class="outer" id="footer_wrap">
-   <footer class="inner">
-    <p class="copyright">
-     INTEL REPORT maintained by
-     <a href="https://github.com/kaysabelle">
-      kaysabelle
-     </a>
-    </p>
-    <p>
-     Published with
-     <a href="http://pages.github.com">
-      GitHub Pages
-     </a>
-    </p>
-   </footer>
-  </div>
- </body>
+  </body>
 </html>

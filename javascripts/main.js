@@ -187,32 +187,34 @@ function getWeatherState() {
 	// document.getElementsByTagName ('PRE')[0].firstChild.data = document.getElementsByTagName ('PRE')[0].firstChild.data.replace (/\t+$/, '');
   console.log("get weather state");
 
-  $.ajax({
-    url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
-    type: 'GET',
-    success: function(res) {
-        console.log("weather state response is: " + res);
-        console.log(res);
-        $("#weatherState").html("weather state");
-    }
-  });
+  // $.ajax({
+  //   url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
+  //   type: 'GET',
+  //   success: function(res) {
+  //       console.log("weather state response is: " + res);
+  //       console.log(res);
+  //       $("#weatherState").html("weather state");
+  //   }
+  // });
 
-  console.log("trying to scrape...");
+  // console.log("trying to scrape...");
 
-  $.ajax({
-    url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
-    dataType: 'text',
-    success: function(data) {
-    	var elements = $("<div>").html(data)[0].getElementsByTagName("pre");
-    	for (var i = 0; i < elements.length; i++) {
-    		var theText = elements[i].firstChild.nodeValue;
-    		console.log(theText);
-    	}
-        console.log("weather state response is: " + res);
-        console.log(res);
-        $("#weatherState").html("weather state");
-    }
-  });
+  // $.ajax({
+  //   url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
+  //   dataType: 'text',
+  //   success: function(data) {
+  //   	var elements = $("<div>").html(data)[0].getElementsByTagName("pre");
+  //   	for (var i = 0; i < elements.length; i++) {
+  //   		var theText = elements[i].firstChild.nodeValue;
+  //   		console.log(theText);
+  //   	}
+  //       console.log("weather state response is: " + res);
+  //       console.log(res);
+  //       $("#weatherState").html("weather state");
+  //   }
+  // });
+
+
 }
 
 
