@@ -167,14 +167,18 @@ function showInfo(data) {
   gauge_copters.refresh(data[0].COPTERS);
   gauge_type3engines.refresh(data[0].TYPE_3_ENGINES_SLU);
   gauge_type2engines.refresh(data[0].TYPE_2_ENGINES_SLC);
-  //gauge_watertenders.refresh(data[0].WATER_TENDERS);
   gauge_dozers.refresh(data[0].DOZERS);
   gauge_cuestacamp.refresh(data[0].CUESTA_CAMP);
   gauge_venturacamp.refresh(data[0].VENTURA_CAMP);
+  gauge_mechanics.refresh(data[0].MECHANICS);
+  gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
+
+  /* to be added to the Google Sheet later, from other reports */
+  //gauge_watertenders.refresh(data[0].WATER_TENDERS);
   //gauge_overhead.refresh(data[0].OVERHEAD);
   //gauge_medics.refresh(data[0].MEDICS);
-  gauge_mechanics.refresh(data[0].MECHANICS);
-  //gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
+  
+  
 
 }        
 
@@ -187,6 +191,24 @@ function getWeatherState() {
     url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
     type: 'GET',
     success: function(res) {
+        console.log("weather state response is: " + res);
+        console.log(res);
+        $("#weatherState").html("weather state");
+    }
+  });
+
+  console.log("trying to scrape...");
+
+  $.ajax({
+    url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
+    dataType: 'text',
+    success: function(data) {
+    	var elements = $("<div>").html(data)[0].getElementsByTagName("pre");
+    	for (var i = 0; i < elements.length; i++) {
+    		var theText = elements[i].firstChild.nodeValue;
+    		console.log(theText);
+    	}
+        console.log("weather state response is: " + res);
         console.log(res);
         $("#weatherState").html("weather state");
     }

@@ -33,10 +33,7 @@
     <!-- MAIN CONTENT --> 
     <div id="main_content_wrap" class="outer clearfix">
       <section id="main-content" class="inner">
-
-
         <div style="clear:both;">
-          <h3><a name="duty">Duty</a></h3><hr>
           <div id="duty">
             <table>
               <tr>
@@ -65,7 +62,13 @@
           </div>
           
           <hr>
-          <div id="gaugeLegend">
+          <div id="colorLegend" style="width:100%; clear: both;">
+            <div id="color1" class="legendBlock" style="color:#fff; background-color:#008000">Resources > 75%</div>
+            <div id="color2" class="legendBlock" style="color:#000; background-color:#FFFF00">LEVEL 1: 75% to 50%</div>
+            <div id="color3" class="legendBlock" style="color:#fff; background-color:#FF4500">LEVEL 2: 50% to 25%</div>
+            <div id="color4" class="legendBlock" style="color:#fff; background-color:#FF0000">LEVEL 3: < 25%</div>
+          </div><br /><br />
+          <!--div id="gaugeLegend">
             <ul class="legend">
               <p>LEGEND</p>
               <li><span class="green"></span> Resources greater than 75%</li><br />
@@ -73,7 +76,7 @@
               <li><span class="level2"></span> LEVEL 2: 50% to 25%</li><br />
               <li><span class="level3"></span> LEVEL 3: Less than 25%</li><br />
             </ul>
-          </div>
+          </div-->
           <div id="gauges">
             <div id="firstrow" style="width: 100%; margin: 0 auto; text-align:center; clear:both;">
               <div id="airattack" class="three_gauges"></div>
@@ -116,6 +119,8 @@
             <h3><a name="weather">State of the Weather</a></h3><hr>
             <p id="weatherState"></p>
           </div>
+          <h5 style="text-align:center;">San Luis Obispo Lightning Tracker</h5>
+          <img src="http://www.sloweather.com/images/lightning.jpg" />
         </div>
 
         <div style="clear:both;">
@@ -126,7 +131,7 @@
           <script type="text/javascript" language="JavaScript" src="http://www.windfinder.com/widget/forecast/js/san_luis_obispo?unit_wave=ft&unit_rain=in&unit_temperature=f&unit_wind=mph&columns=2&days=2&show_day=0"></script>
           <noscript>
             <a href='http://www.windfinder.com/forecast/san_luis_obispo?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast'>Wind forecast for San Luis Obispo</a> provided by <a href='http://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo'>windfinder.com</a>
-            </noscript>
+          </noscript>
         </div>
 
         <div style="clear:both;">

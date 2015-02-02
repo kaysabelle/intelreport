@@ -66,7 +66,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   font-weight: 700;
-  color:#FFFFFF;
+  color:#000000;
   font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
   letter-spacing: -1px;
 }
@@ -243,7 +243,7 @@ hr {
 }
 
 table {
-  border: 1px solid #373737;
+  /*border: 1px solid #373737; */
   margin-bottom: 20px;
   text-align: left;
  }
@@ -268,6 +268,11 @@ form {
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
+.legendBlock {
+  float: left;
+  width: 25%;
+  text-align: center;
+}
 
 .dutytext {
   
@@ -302,7 +307,6 @@ Full-Width Styles
 .legend .level1 { background-color: #FFFF00; }
 .legend .level2 { background-color: #FF4500; }
 .legend .level3 { background-color: #FF0000; }
-
 
 .outer {
   width: 100%;
