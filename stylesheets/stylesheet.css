@@ -433,6 +433,20 @@ Full-Width Styles
   background: #212121; 
   /*background: #f2f2f2; */
 }
+#fireMap {
+  float: left;
+  padding-bottom: 30px;
+  padding-right: 5px;
+  width: 80%;
+  height:480px;
+}
+.firelegend {
+  float: right;
+  width: 15%;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
 
 
 

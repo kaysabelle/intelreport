@@ -3,13 +3,19 @@ function init() {
 	/* Link to the public Google Sheet */
     //var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/14oY5jJboGdnBFSWEjKF7R_85afMFjzdyJKJIH9SPmeo/pubhtml?gid=1010805911&single=true';
     var formatted_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1wz-6cFvzf8n_n49ht0-uyuPGa9P_yq9A-HY425Nv74g/pubhtml';
-
+    var staffingPatter_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1iymMtvcegIzLlG2apiV5sVWVx6Tmn8lIlucLH8I6ZR8/pubhtml';
     Tabletop.init( { key: formatted_spreadsheet_url,
                      callback: getData,
                      debug: true,
                      wanted: ["Sheet1"],
                      parseNumbers: true,
                      simpleSheet: true } );
+
+    Tabletop.init( { key: staffingPatter_spreadsheet_url,
+                     callback: getStaffingData,
+                     debug: true,
+                     parseNumbers: true,
+                     simpleSheet: true });
 
     // getWeatherState();
 }
@@ -213,8 +219,15 @@ function getWeatherState() {
   //       $("#weatherState").html("weather state");
   //   }
   // });
+}
 
+function getStaffingData(data) {
 
+  console.log("We have Staffing data!");
+  console.log(data);
+
+  // TODO finish filling in table for staffing pattern. 
+  // Form and spreadsheet has been created for fillout, located in slugis3400's google drive in IntelReport folder
 }
 
 
