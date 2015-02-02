@@ -11,7 +11,7 @@ function init() {
                      parseNumbers: true,
                      simpleSheet: true } );
 
-    getWeatherState();
+    // getWeatherState();
 }
 
 function getData(data) {
@@ -214,5 +214,6 @@ function getWeatherState() {
     }
   });
 }
+
 
 
