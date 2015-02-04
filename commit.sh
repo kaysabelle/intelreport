@@ -1,3 +1,5 @@
+#!/bin/bash          
+
 git pull
 python weatherScrapper.py
 git add -A
