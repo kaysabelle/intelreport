@@ -1,6 +1,6 @@
 /* Initializes Tabletop, asking for the rows in the "Results" sheet */
 function init() {
-	/* Link to the public Google Sheet */
+  /* Link to the public Google Sheet */
     //var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/14oY5jJboGdnBFSWEjKF7R_85afMFjzdyJKJIH9SPmeo/pubhtml?gid=1010805911&single=true';
     var formatted_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1wz-6cFvzf8n_n49ht0-uyuPGa9P_yq9A-HY425Nv74g/pubhtml';
     var staffingPatter_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1iymMtvcegIzLlG2apiV5sVWVx6Tmn8lIlucLH8I6ZR8/pubhtml';
@@ -17,19 +17,20 @@ function init() {
                      parseNumbers: true,
                      simpleSheet: true });
 
+    console.log("about to get weather state!");
     getWeatherState();
 }
 
 function getData(data) {
-	/* DUTY */
-	console.log("We have data!");
-	console.log(data);
-	
-	document.getElementById("dutychief").innerHTML = data[0].DUTY_CHIEF;
-	document.getElementById("investigator").innerHTML = data[0].DUTY_INVESTIGATOR;
-	document.getElementById("eccofficer").innerHTML = data[0].ECC_DUTY_OFFICER;
-	document.getElementById("incidentmgmt").innerHTML = data[0].INCIDENT_MGMT_TEAM;
-	document.getElementById("timestamp").innerHTML = data[0].TIMESTAMP;
+  /* DUTY */
+  console.log("We have data!");
+  console.log(data);
+  
+  document.getElementById("dutychief").innerHTML = data[0].DUTY_CHIEF;
+  document.getElementById("investigator").innerHTML = data[0].DUTY_INVESTIGATOR;
+  document.getElementById("eccofficer").innerHTML = data[0].ECC_DUTY_OFFICER;
+  document.getElementById("incidentmgmt").innerHTML = data[0].INCIDENT_MGMT_TEAM;
+  document.getElementById("timestamp").innerHTML = data[0].TIMESTAMP;
 
     showInfo(data);
 }
@@ -183,33 +184,34 @@ function showInfo(data) {
   //gauge_watertenders.refresh(data[0].WATER_TENDERS);
   //gauge_overhead.refresh(data[0].OVERHEAD);
   //gauge_medics.refresh(data[0].MEDICS);
-  
-  
-
 }        
 
 // Access pre tag of document
 function getWeatherState() {
-	// document.getElementsByTagName ('PRE')[0].firstChild.data = document.getElementsByTagName ('PRE')[0].firstChild.data.replace (/\t+$/, '');
-  console.log("get weather state");
+  console.log("got weather state");
 
   $.ajax({
-    url: '../weatherState.txt',
+    url: '/weatherState.txt',
     type: 'GET',
     success: function(res) {
         $("#weatherState").append(res);
     }
   });
 
+  // failsafe
+  $("#weatherState").load("weatherState.txt");
 }
 
 function getStaffingData(data) {
 
   console.log("We have Staffing data!");
   console.log(data);
-
-  // TODO finish filling in table for staffing pattern. 
-  // Form and spreadsheet has been created for fillout, located in slugis3400's google drive in IntelReport folder
+  
+  // Fill in table for staffing pattern
+  for (var i = 0; i < data.length; i++) {
+    var curEntry = data[i];
+    document.getElementById("staffingpatterntable").innerHTML += "<tr><td>" + curEntry['Req Number'] + "</td><td>" + curEntry['Effective Date/Time'] + "</td><td>" + curEntry['For'] + "</td><td>" + curEntry['Staffing Pattern Item'] + "</td><td>" + curEntry['Rescinded Date/Time'] + "</td></tr>";
+  }
 }
 
 
