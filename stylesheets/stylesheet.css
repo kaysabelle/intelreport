@@ -274,12 +274,9 @@ Full-Width Styles
   text-align: center;
 }
 
-.dutytext {
-  
-}
-
-.dutytext p {
-  color: #fff;
+.infosection {
+  clear: both;
+  text-align: center;
 }
 
 .three_gauges {
@@ -379,6 +376,11 @@ Full-Width Styles
   right: 0;
   height: 70px;
   background: url('../images/icon_download.png') no-repeat 0% 90%;
+}
+
+#topnav {
+  text-align: center;
+  font-size: 18px;
 }
 
 .zip_download_link {

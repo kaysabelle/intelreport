@@ -26,7 +26,7 @@
 
           <h1 id="project_title">CAL FIRE SLU INTEL Report</h1>
           <h2 id="project_tagline">Updated <b id="timestamp" style="color: #66D9EF;"></b></h2>
-          <p><a href="#resources">Resources</a> | <a href="#staffing">Staffing Patterns</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind & Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#region">Region</a> | <a href="#incidents"> Incidents</a></p>
+          <p id="topnav"><a href="#resources">Resources</a> | <a href="#staffing">Staffing Patterns</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind and Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#incidents"> Incidents</a></p>
         </header>
     </div>
 
@@ -55,7 +55,6 @@
         </div>
         
         <div style="clear:both;">
-
           <div style="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="resources">Resources Available in Unit</a></h3>
@@ -103,51 +102,59 @@
               <div id="dozeroperators" class="four_gauges"></div>
             </div>
           </div>
-          
-        </div><br /><br />
+        </div>
         
         <div style="clear:both;">
           <div style="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="staffing">Staffing Patterns</a></h3><hr>
           </div>
-          <table id="staffingpatterntable">
-            <tr>
-              <td>Req Number</td>
-              <td>Effective DateTime</td>
-              <td>For</td>
-              <td>Staffing Pattern Item</td>
-              <td>Rescinded DateTime</td>
-            </tr>
+          <div class="infosection">
+            <table id="staffingpatterntable">
+              <tr>
+                <td>Req Number</td>
+                <td>Effective DateTime</td>
+                <td>For</td>
+                <td>Staffing Pattern Item</td>
+                <td>Rescinded DateTime</td>
+              </tr>
           </table>
+          </div>
         </div>
 
         <div style="clear:both;">
-          <div style="clear:both;">
+          <div class="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="weather">State of the Weather</a></h3><hr>
             <p id="weatherState"></p>
           </div>
-          <h5 style="text-align:center;">San Luis Obispo Lightning Tracker</h5>
-          <img src="http://www.sloweather.com/images/lightning.jpg" />
+          <div class="infosection">
+            <h5 style="text-align:center;">San Luis Obispo Lightning Tracker</h5>
+            <img src="http://www.sloweather.com/images/lightning.jpg" />
+          </div>
         </div>
 
         <div style="clear:both;">
-          <div style="clear:both;">
+          <div class="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="windtides">State of the Wind and Tides</a></h3><hr>
           </div>
-          <script type="text/javascript" language="JavaScript" src="http://www.windfinder.com/widget/forecast/js/san_luis_obispo?unit_wave=ft&unit_rain=in&unit_temperature=f&unit_wind=mph&columns=2&days=2&show_day=0"></script>
-          <noscript>
-            <a href='http://www.windfinder.com/forecast/san_luis_obispo?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast'>Wind forecast for San Luis Obispo</a> provided by <a href='http://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo'>windfinder.com</a>
-          </noscript>
+          <div class="infosection">
+            <script type="text/javascript" language="JavaScript" src="http://www.windfinder.com/widget/forecast/js/san_luis_obispo?unit_wave=ft&unit_rain=in&unit_temperature=f&unit_wind=mph&columns=2&days=2&show_day=0">
+            </script>
+            <noscript>
+              <a href='http://www.windfinder.com/forecast/san_luis_obispo?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast'>Wind forecast for San Luis Obispo</a> provided by <a href='http://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo'>windfinder.com</a>
+            </noscript>
+          </div>
         </div>
 
         <div style="clear:both;">
-          <div style="clear:both;">
+          <div class="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="fuelmoisture">State of the Fuel Moisture</a></h3><hr>
             <!-- Information found http://www.wfas.net/index.php/national-fuel-moisture-database-moisture-drought-103 -->
+          </div>
+          <div class="infosection">
             <img src="http://www.wfas.net/nfmd/graphs/img_Irish%20Hills_Chamise,%20Old%20Growth_bimonthly.png">
             <img src="http://www.wfas.net/nfmd/graphs/img_Lopez%20Lake_Chamise,%20Old%20Growth_bimonthly.png">
             <img src="http://www.wfas.net/nfmd/graphs/img_Parkhill_Chamise,%20Old%20Growth_bimonthly.png">
@@ -155,26 +162,28 @@
         </div>
 
         <div style="clear:both;">
-          <div style="clear:both;">
+          <div class="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="drought">State of the Drought</a></h3><hr>
           </div>
-
-          <img src="http://droughtmonitor.unl.edu/data/jpg/current/current_ca_trd.jpg" />
+          <div class="infosection">
+            <img src="http://droughtmonitor.unl.edu/data/jpg/current/current_ca_trd.jpg" />
+          </div>    
         </div>
 
-        <div style="clear:both;">
+        <!--div style="clear:both;">
           <div style="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="region">State of the Region</a></h3><hr>
           </div>
-        </div>
+        </div-->
 
         <div style="clear:both;">
-          <div style="clear:both;">
+          <div class="clear:both;">
             <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
             <h3><a name="incidents">Active Incidents</a></h3><hr>
-            
+          </div>
+          <div class="infosection">
             <iframe src="https://maps.google.com/maps/ms?ie=UTF8&hl=en&msa=0&msid=208523333872813891131.0004c02beb4f2788337d0&ll=37.055177,-120.454102&spn=17.505593,18.720703&z=5&output=embed" id="fireMap"></iframe>
             
             <div class="firelegend" id="activeFire">
@@ -185,7 +194,6 @@
               Contained Fire: 
               <img src="http://www.fire.ca.gov/fire_protection/images/contained_fire.png" />
             </div>
-            
           </div>
         </div>
 
