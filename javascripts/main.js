@@ -194,7 +194,7 @@ function getWeatherState() {
   console.log("get weather state");
 
   $.ajax({
-    url: '/weatherState.txt',
+    url: '../weatherState.txt',
     type: 'GET',
     success: function(res) {
         $("#weatherState").append(res);
