@@ -1,7 +1,5 @@
 #!/bin/bash          
-#set -x
 
-#exec ssh-agent bash
 ssh-add
 git pull
 echo "Pulling latest weather data..."
