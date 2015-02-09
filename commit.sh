@@ -1,7 +1,7 @@
 #!/bin/bash          
 
-git pull
-python weatherScrapper.py
-git add -A
-git commit -m "Daily Weather Update"
-git push 
+sudo git pull
+sudo python weatherScrapper.py
+sudo git add -A
+sudo git commit -m "Daily Weather Update"
+sudo git push 
