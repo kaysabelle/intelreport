@@ -1,9 +1,8 @@
 #!/bin/bash          
+set -x
 
-#echo Adding private key...
-exec ssh-agent bash
-ssh-add ~/.ssh/id_rsa
-echo "Pulling latest weather data..."
+#exec ssh-agent bash
+ssh-add
 git pull
 python weatherScrapper.py
 git add -A
