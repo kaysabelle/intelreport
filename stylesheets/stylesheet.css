@@ -453,7 +453,13 @@ Full-Width Styles
   padding-bottom: 30px;
 }
 
+#weatherTitle {
+  width: 60%;
+}
 
+#weatherInfo {
+  width: 85%;
+}
 
 
 /*******************************************************************************

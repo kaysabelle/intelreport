@@ -190,16 +190,42 @@ function showInfo(data) {
 function getWeatherState() {
   console.log("got weather state");
 
+  // $.ajax({
+  //   url: '/weatherState.txt',
+  //   type: 'GET',
+  //   success: function(res) {
+  //       $("#weatherState").append(res);
+  //   }
+  // });
+
+  // // failsafe
+  // $("#weatherState").load("weatherState.txt");
+
   $.ajax({
-    url: '/weatherState.txt',
+    url: 'http://www.crh.noaa.gov/data/LOX/AFDLOX',
     type: 'GET',
     success: function(res) {
-        $("#weatherState").append(res);
+        console.log(res.responseText);
+        var weatherState = $('p', '<div>' + res.responseText + '</div>').text();
+
+        var title = weatherState.slice(
+          weatherState.indexOf("SOUTHWEST"),
+          weatherState.indexOf(".SYNOPSIS"));
+
+        var shortTerm = weatherState.slice(
+          weatherState.indexOf(".SHORT TERM"),
+          weatherState.indexOf(".LONG TERM"));
+
+        weatherState = title + "<br>" + shortTerm;
+
+        var titleP = $("<p>").attr('id', 'weatherTitle').html(title);
+        var shortTermP = $("<p>").attr('id', 'weatherInfo').html(shortTerm);
+        $("#weatherState").append(titleP);
+        $("#weatherState").append(shortTermP);
+
+
     }
   });
-
-  // failsafe
-  $("#weatherState").load("weatherState.txt");
 }
 
 function getStaffingData(data) {
