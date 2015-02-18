@@ -461,6 +461,15 @@ Full-Width Styles
   width: 85%;
 }
 
+.strikeout {
+  text-decoration: line-through;
+  font-style:italic;
+}
+
+.staffingpatternheading{
+  font-size:21px;
+  font-weight: bold;
+}
 
 /*******************************************************************************
 Small Device Styles

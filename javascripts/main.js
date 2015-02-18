@@ -3,7 +3,7 @@ function init() {
   /* Link to the public Google Sheet */
     //var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/14oY5jJboGdnBFSWEjKF7R_85afMFjzdyJKJIH9SPmeo/pubhtml?gid=1010805911&single=true';
     var formatted_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1wz-6cFvzf8n_n49ht0-uyuPGa9P_yq9A-HY425Nv74g/pubhtml';
-    var staffingPatter_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1iymMtvcegIzLlG2apiV5sVWVx6Tmn8lIlucLH8I6ZR8/pubhtml';
+    var staffingPatter_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1f9sS_5cnEDcOq_oXw2eqjCgCdDUPYK7vE3NQeMZD0CM/pubhtml';
     Tabletop.init( { key: formatted_spreadsheet_url,
                      callback: getData,
                      debug: true,
@@ -13,6 +13,7 @@ function init() {
 
     Tabletop.init( { key: staffingPatter_spreadsheet_url,
                      callback: getStaffingData,
+                     wanted: ["Sheet2"],
                      debug: true,
                      parseNumbers: true,
                      simpleSheet: true });
@@ -230,14 +231,52 @@ function getWeatherState() {
 
 function getStaffingData(data) {
 
+  var columns = [
+    "Req Number", 
+    "Effective Date/Time", 
+    "For",
+    "Staffing Pattern Item",
+    "Rescinded Date/Time"];
+
   console.log("We have Staffing data!");
   console.log(data);
   
+  console.log(data.length);
+
+  var curEntry = data[data.length - 1];
+
   // Fill in table for staffing pattern
-  for (var i = 0; i < data.length; i++) {
-    var curEntry = data[i];
-    document.getElementById("staffingpatterntable").innerHTML += "<tr><td>" + curEntry['Req Number'] + "</td><td>" + curEntry['Effective Date/Time'] + "</td><td>" + curEntry['For'] + "</td><td>" + curEntry['Staffing Pattern Item'] + "</td><td>" + curEntry['Rescinded Date/Time'] + "</td></tr>";
+  for (var i = 0; i < 12; i++) {
+    // var curEntry = data[i];
+    // document.getElementById("staffingpatterntable").innerHTML += 
+    //   "<tr><td>" + curEntry["Req Number " + (i+1)] + 
+    //   "</td><td>" + curEntry["Effective Date/Time " + (i+1)] + 
+    //   "</td><td>" + curEntry["For " + (i+1)] + 
+    //   "</td><td>" + curEntry["Staffing Pattern Item " + (i+1)] + 
+    //   "</td><td><font color='red'\\>" + curEntry["Rescinded Date/Time " + (i+1)] + 
+    //   "</td></tr>";
+
+    var row = $("<tr>");
+    var req = $("<td>" + curEntry["Req Number " + (i+1)] + "</td>");
+    var eff = $("<td>" + curEntry["Effective Date/Time " + (i+1)] + "</td>");
+    var For = $("<td>" + curEntry["For " + (i+1)] + "</td>");
+    var item = $("<td>" + curEntry["Staffing Pattern Item " + (i+1)] + "</td>");
+    var rescind = $("<td>" + curEntry["Rescinded Date/Time " + (i+1)] + "</td>").css("color", "red");
+    
+    row.append(req);
+    row.append(eff);
+    row.append(For);
+    row.append(item);
+    row.append(rescind);
+
+    if (curEntry["Strikethrough" + (i+1)] == "line-through")
+      row.addClass("strikeout");
+
+    $("#staffingpatterntable").append(row);
   }
+
+  $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);
+
 }
 
 
