@@ -16,7 +16,7 @@ function init() {
                      wanted: ["Sheet2"],
                      debug: true,
                      parseNumbers: true,
-                     simpleSheet: false });
+                     simpleSheet: true });
 
     Tabletop.init( { key: staffingPatter_spreadsheet_url,
                      callback: getStaffingData,
