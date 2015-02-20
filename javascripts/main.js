@@ -18,6 +18,13 @@ function init() {
                      parseNumbers: true,
                      simpleSheet: false });
 
+    Tabletop.init( { key: staffingPatter_spreadsheet_url,
+                     callback: getStaffingData,
+                     wanted: ["Sheet3"],
+                     debug: true,
+                     parseNumbers: true,
+                     simpleSheet: true });
+
     console.log("about to get weather state!");
     getWeatherState();
 }
@@ -230,7 +237,7 @@ function getWeatherState() {
   });
 }
 
-function getStaffingData(data) {
+function getStaffingData(data, tabletop) {
 
   var columns = [
     "Req Number", 
@@ -241,21 +248,29 @@ function getStaffingData(data) {
 
   console.log("We have Staffing data!");
   console.log(data);
-  
+  var sheets = tabletop.sheets();
+  var tableNumber;
+  var size;
+  console.log(Object.keys(sheets)[0]);
+  console.log(sheets);
+  if (Object.keys(sheets)[0] == "Sheet2") {
+    tableNumber = "#staffingpatterntable";
+    size = 12;
+  }
+  else {
+    tableNumber = "#staffingpatterntable2";
+    size = 4;
+  }
+
+  console.log(tableNumber);
+
   console.log(data.length);
 
   var curEntry = data[data.length - 1];
-
+  // var tableTitle = $("<h4>" + curEntry["Year"] + " - " + curEntry["Title"] + "</h4>");
+    // $(tableNumber).before(tableTitle);
   // Fill in table for staffing pattern
-  for (var i = 0; i < 12; i++) {
-    // var curEntry = data[i];
-    // document.getElementById("staffingpatterntable").innerHTML += 
-    //   "<tr><td>" + curEntry["Req Number " + (i+1)] + 
-    //   "</td><td>" + curEntry["Effective Date/Time " + (i+1)] + 
-    //   "</td><td>" + curEntry["For " + (i+1)] + 
-    //   "</td><td>" + curEntry["Staffing Pattern Item " + (i+1)] + 
-    //   "</td><td><font color='red'\\>" + curEntry["Rescinded Date/Time " + (i+1)] + 
-    //   "</td></tr>";
+  for (var i = 0; i < size; i++) {
 
     var row = $("<tr>");
     var req = $("<td>" + curEntry["Req Number " + (i+1)] + "</td>");
@@ -273,7 +288,7 @@ function getStaffingData(data) {
     if (curEntry["Strikethrough" + (i+1)] == "line-through")
       row.addClass("strikeout");
 
-    $("#staffingpatterntable").append(row);
+    $(tableNumber).append(row);
   }
 
   $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);

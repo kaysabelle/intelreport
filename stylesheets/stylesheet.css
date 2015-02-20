@@ -461,7 +461,7 @@ Full-Width Styles
   width: 85%;
 }
 
-.strikeout {
+.strikeout td:not(:last-child){
   text-decoration: line-through;
   font-style:italic;
 }
@@ -469,6 +469,10 @@ Full-Width Styles
 .staffingpatternheading{
   font-size:21px;
   font-weight: bold;
+}
+
+.noStrike {
+  text-decoration: none;
 }
 
 /*******************************************************************************
