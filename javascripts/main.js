@@ -16,7 +16,7 @@ function init() {
                      wanted: ["Sheet2"],
                      debug: true,
                      parseNumbers: true,
-                     simpleSheet: true });
+                     simpleSheet: false });
 
     console.log("about to get weather state!");
     getWeatherState();
@@ -30,6 +30,7 @@ function getData(data) {
   document.getElementById("dutychief").innerHTML = data[0].DUTY_CHIEF;
   document.getElementById("investigator").innerHTML = data[0].DUTY_INVESTIGATOR;
   document.getElementById("eccofficer").innerHTML = data[0].ECC_DUTY_OFFICER;
+  document.getElementById("eccstaff").innerHTML = data[0].ECC_STAFF;
   document.getElementById("incidentmgmt").innerHTML = data[0].INCIDENT_MGMT_TEAM;
   document.getElementById("timestamp").innerHTML = data[0].TIMESTAMP;
 
