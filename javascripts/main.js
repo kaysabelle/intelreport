@@ -1,9 +1,9 @@
 /* Initializes Tabletop, asking for the rows in the "Results" sheet */
 function init() {
-	/* Link to the public Google Sheet */
+  /* Link to the public Google Sheet */
     //var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/14oY5jJboGdnBFSWEjKF7R_85afMFjzdyJKJIH9SPmeo/pubhtml?gid=1010805911&single=true';
     var formatted_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1wz-6cFvzf8n_n49ht0-uyuPGa9P_yq9A-HY425Nv74g/pubhtml';
-
+    var staffingPatter_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1f9sS_5cnEDcOq_oXw2eqjCgCdDUPYK7vE3NQeMZD0CM/pubhtml';
     Tabletop.init( { key: formatted_spreadsheet_url,
                      callback: getData,
                      debug: true,
@@ -11,19 +11,35 @@ function init() {
                      parseNumbers: true,
                      simpleSheet: true } );
 
-    // getWeatherState();
+    Tabletop.init( { key: staffingPatter_spreadsheet_url,
+                     callback: getStaffingData,
+                     wanted: ["Sheet2"],
+                     debug: true,
+                     parseNumbers: true,
+                     simpleSheet: true });
+
+    Tabletop.init( { key: staffingPatter_spreadsheet_url,
+                     callback: getStaffingData,
+                     wanted: ["Sheet3"],
+                     debug: true,
+                     parseNumbers: true,
+                     simpleSheet: true });
+
+    console.log("about to get weather state!");
+    getWeatherState();
 }
 
 function getData(data) {
-	/* DUTY */
-	console.log("We have data!");
-	console.log(data);
-	
-	document.getElementById("dutychief").innerHTML = data[0].DUTY_CHIEF;
-	document.getElementById("investigator").innerHTML = data[0].DUTY_INVESTIGATOR;
-	document.getElementById("eccofficer").innerHTML = data[0].ECC_DUTY_OFFICER;
-	document.getElementById("incidentmgmt").innerHTML = data[0].INCIDENT_MGMT_TEAM;
-	document.getElementById("timestamp").innerHTML = data[0].TIMESTAMP;
+  /* DUTY */
+  console.log("We have data!");
+  console.log(data);
+  
+  document.getElementById("dutychief").innerHTML = data[0].DUTY_CHIEF;
+  document.getElementById("investigator").innerHTML = data[0].DUTY_INVESTIGATOR;
+  document.getElementById("eccofficer").innerHTML = data[0].ECC_DUTY_OFFICER;
+  document.getElementById("eccstaff").innerHTML = data[0].ECC_STAFF;
+  document.getElementById("incidentmgmt").innerHTML = data[0].INCIDENT_MGMT_TEAM;
+  document.getElementById("timestamp").innerHTML = data[0].TIMESTAMP;
 
     showInfo(data);
 }
@@ -177,43 +193,105 @@ function showInfo(data) {
   //gauge_watertenders.refresh(data[0].WATER_TENDERS);
   //gauge_overhead.refresh(data[0].OVERHEAD);
   //gauge_medics.refresh(data[0].MEDICS);
-  
-  
-
 }        
 
 // Access pre tag of document
 function getWeatherState() {
-	// document.getElementsByTagName ('PRE')[0].firstChild.data = document.getElementsByTagName ('PRE')[0].firstChild.data.replace (/\t+$/, '');
-  console.log("get weather state");
+  console.log("got weather state");
 
   // $.ajax({
-  //   url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
+  //   url: '/weatherState.txt',
   //   type: 'GET',
   //   success: function(res) {
-  //       console.log("weather state response is: " + res);
-  //       console.log(res);
-  //       $("#weatherState").html("weather state");
+  //       $("#weatherState").append(res);
   //   }
   // });
 
-  // console.log("trying to scrape...");
+  // // failsafe
+  // $("#weatherState").load("weatherState.txt");
 
-  // $.ajax({
-  //   url: 'http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24',
-  //   dataType: 'text',
-  //   success: function(data) {
-  //   	var elements = $("<div>").html(data)[0].getElementsByTagName("pre");
-  //   	for (var i = 0; i < elements.length; i++) {
-  //   		var theText = elements[i].firstChild.nodeValue;
-  //   		console.log(theText);
-  //   	}
-  //       console.log("weather state response is: " + res);
-  //       console.log(res);
-  //       $("#weatherState").html("weather state");
-  //   }
-  // });
+  $.ajax({
+    url: 'http://www.crh.noaa.gov/data/LOX/AFDLOX',
+    type: 'GET',
+    success: function(res) {
+        console.log(res.responseText);
+        var weatherState = $('p', '<div>' + res.responseText + '</div>').text();
 
+        var title = weatherState.slice(
+          weatherState.indexOf("SOUTHWEST"),
+          weatherState.indexOf(".SYNOPSIS"));
+
+        var shortTerm = weatherState.slice(
+          weatherState.indexOf(".SHORT TERM"),
+          weatherState.indexOf(".LONG TERM"));
+
+        weatherState = title + "<br>" + shortTerm;
+
+        var titleP = $("<p>").attr('id', 'weatherTitle').html(title);
+        var shortTermP = $("<p>").attr('id', 'weatherInfo').html(shortTerm);
+        $("#weatherState").append(titleP);
+        $("#weatherState").append(shortTermP);
+
+
+    }
+  });
+}
+
+function getStaffingData(data, tabletop) {
+
+  var columns = [
+    "Req Number", 
+    "Effective Date/Time", 
+    "For",
+    "Staffing Pattern Item",
+    "Rescinded Date/Time"];
+
+  console.log("We have Staffing data!");
+  console.log(data);
+  var sheets = tabletop.sheets();
+  var tableNumber;
+  var size;
+  console.log(Object.keys(sheets)[0]);
+  console.log(sheets);
+  if (Object.keys(sheets)[0] == "Sheet2") {
+    tableNumber = "#staffingpatterntable";
+    size = 12;
+  }
+  else {
+    tableNumber = "#staffingpatterntable2";
+    size = 4;
+  }
+
+  console.log(tableNumber);
+
+  console.log(data.length);
+
+  var curEntry = data[data.length - 1];
+  // var tableTitle = $("<h4>" + curEntry["Year"] + " - " + curEntry["Title"] + "</h4>");
+    // $(tableNumber).before(tableTitle);
+  // Fill in table for staffing pattern
+  for (var i = 0; i < size; i++) {
+
+    var row = $("<tr>");
+    var req = $("<td>" + curEntry["Req Number " + (i+1)] + "</td>");
+    var eff = $("<td>" + curEntry["Effective Date/Time " + (i+1)] + "</td>");
+    var For = $("<td>" + curEntry["For " + (i+1)] + "</td>");
+    var item = $("<td>" + curEntry["Staffing Pattern Item " + (i+1)] + "</td>");
+    var rescind = $("<td>" + curEntry["Rescinded Date/Time " + (i+1)] + "</td>").css("color", "red");
+    
+    row.append(req);
+    row.append(eff);
+    row.append(For);
+    row.append(item);
+    row.append(rescind);
+
+    if (curEntry["Strikethrough" + (i+1)] == "line-through")
+      row.addClass("strikeout");
+
+    $(tableNumber).append(row);
+  }
+
+  $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);
 
 }
 

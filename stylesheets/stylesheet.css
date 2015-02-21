@@ -268,18 +268,19 @@ form {
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
+.attr {
+  text-align: right;
+}
+
 .legendBlock {
   float: left;
   width: 25%;
   text-align: center;
 }
 
-.dutytext {
-  
-}
-
-.dutytext p {
-  color: #fff;
+.infosection {
+  clear: both;
+  text-align: center;
 }
 
 .three_gauges {
@@ -381,6 +382,11 @@ Full-Width Styles
   background: url('../images/icon_download.png') no-repeat 0% 90%;
 }
 
+#topnav {
+  text-align: center;
+  font-size: 18px;
+}
+
 .zip_download_link {
   display: block;
   float: right;
@@ -433,8 +439,41 @@ Full-Width Styles
   background: #212121; 
   /*background: #f2f2f2; */
 }
+#fireMap {
+  float: left;
+  padding-bottom: 30px;
+  padding-right: 5px;
+  width: 80%;
+  height:480px;
+}
+.firelegend {
+  float: right;
+  width: 15%;
+  text-align: center;
+  padding-bottom: 30px;
+}
 
+#weatherTitle {
+  width: 60%;
+}
 
+#weatherInfo {
+  width: 85%;
+}
+
+.strikeout td:not(:last-child){
+  text-decoration: line-through;
+  font-style:italic;
+}
+
+.staffingpatternheading{
+  font-size:21px;
+  font-weight: bold;
+}
+
+.noStrike {
+  text-decoration: none;
+}
 
 /*******************************************************************************
 Small Device Styles

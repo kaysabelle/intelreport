@@ -15,14 +15,9 @@ url = "http://www.wrh.noaa.gov/eccda/eccda.php?ecczone=24"
 soup = BeautifulSoup(urlopen(url))
 text = soup.body.pre.contents[0]
 
-text = text.replace('\n', " <br> ")
-print (text)
+text = text.replace('\n', "\n<br> ")
 
-# Opens html to write over it
-newSoup = BeautifulSoup(open("index.html"))
-oldTag = newSoup.find("p", id="weatherState")
-oldTag.string = text
 
 # Writes over the HTMl
-with open("index.html", "wb") as file:
-	file.write(bytes(newSoup.prettify(), 'UTF-8'))
+with open("weatherState.txt", "wb") as file:
+	file.write(bytes(text))
