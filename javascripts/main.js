@@ -16,7 +16,7 @@ function init() {
                      wanted: ["Sheet2"],
                      debug: true,
                      parseNumbers: true,
-                     simpleSheet: false });
+                     simpleSheet: true });
 
     Tabletop.init( { key: staffingPatter_spreadsheet_url,
                      callback: getStaffingData,
@@ -238,61 +238,59 @@ function getWeatherState() {
 }
 
 function getStaffingData(data, tabletop) {
-
+  // Name of columns in record spreasheet
   var columns = [
     "Req Number", 
     "Effective Date/Time", 
     "For",
     "Staffing Pattern Item",
-    "Rescinded Date/Time"];
+    "Rescinded Date/Time",
+    "Strikethrough"];
 
-  console.log("We have Staffing data!");
-  console.log(data);
-  var sheets = tabletop.sheets();
-  var tableNumber;
-  var size;
-  console.log(Object.keys(sheets)[0]);
-  console.log(sheets);
-  if (Object.keys(sheets)[0] == "Sheet2") {
+  var sheets = tabletop.sheets();             // Grab sheet information
+  var tableNumber;                            // Used to know which table to change
+  var sheetName = Object.keys(sheets)[0];     // Sheet name is always first key
+  if (sheetName == "Sheet2") {
     tableNumber = "#staffingpatterntable";
-    size = 12;
   }
   else {
     tableNumber = "#staffingpatterntable2";
-    size = 4;
   }
 
-  console.log(tableNumber);
+  var curEntry = data[data.length - 1];        // Grab last record
 
-  console.log(data.length);
+  // Size calculation: # of columns - 1 for timestamp / 6 different columns
+  var size = (sheets[sheetName].column_names.length - 1) / columns.length;
 
-  var curEntry = data[data.length - 1];
-  // var tableTitle = $("<h4>" + curEntry["Year"] + " - " + curEntry["Title"] + "</h4>");
-    // $(tableNumber).before(tableTitle);
-  // Fill in table for staffing pattern
   for (var i = 0; i < size; i++) {
 
+    // Create new row
     var row = $("<tr>");
-    var req = $("<td>" + curEntry["Req Number " + (i+1)] + "</td>");
-    var eff = $("<td>" + curEntry["Effective Date/Time " + (i+1)] + "</td>");
-    var For = $("<td>" + curEntry["For " + (i+1)] + "</td>");
-    var item = $("<td>" + curEntry["Staffing Pattern Item " + (i+1)] + "</td>");
-    var rescind = $("<td>" + curEntry["Rescinded Date/Time " + (i+1)] + "</td>").css("color", "red");
-    
-    row.append(req);
-    row.append(eff);
-    row.append(For);
-    row.append(item);
-    row.append(rescind);
 
-    if (curEntry["Strikethrough" + (i+1)] == "line-through")
-      row.addClass("strikeout");
+    // If there's nothing there, skip it
+    if (curEntry[columns[0] + " " + (i+1)] == "") 
+      continue;
+
+    // Loop through columns and insert corresponding value
+    for (var j = 0; j < columns.length; j++) {
+      var td = $("<td>" + curEntry[columns[j] + " " + (i+1)] + "</td>");
+
+      if (j == columns.length - 2) // If it's in Rescinded col, add color
+        td.css("color", "red");
+
+      if (j == columns.length - 1) {// If its strikethrough, check
+        if (curEntry[columns[j] + (i+1)] == "line-through") {
+          row.addClass("strikeout");
+        }
+      }
+      else
+        row.append(td);
+    }
 
     $(tableNumber).append(row);
   }
 
   $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);
-
 }
 
 
