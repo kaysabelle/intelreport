@@ -271,6 +271,7 @@ function getStaffingData(data, tabletop) {
     if (curEntry[columns[0] + " " + (i+1)] == "") 
       continue;
 
+    console.log("curentry is" + curEntry);
     // Loop through columns and insert corresponding value
     for (var j = 0; j < columns.length; j++) {
       var td = $("<td>" + curEntry[columns[j] + " " + (i+1)] + "</td>");
