@@ -134,7 +134,7 @@ function showInfo(data) {
           id: "venturacamp",
           value: 0,
           min: 0,
-          max: 3,
+          max: 7,
           levelColors: resourceLevelColors,
           title: "Ventura Camp"
         });
