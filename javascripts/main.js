@@ -199,17 +199,6 @@ function showInfo(data) {
 function getWeatherState() {
   console.log("got weather state");
 
-  // $.ajax({
-  //   url: '/weatherState.txt',
-  //   type: 'GET',
-  //   success: function(res) {
-  //       $("#weatherState").append(res);
-  //   }
-  // });
-
-  // // failsafe
-  // $("#weatherState").load("weatherState.txt");
-
   $.ajax({
     url: 'http://www.crh.noaa.gov/data/LOX/AFDLOX',
     type: 'GET',
@@ -271,9 +260,10 @@ function getStaffingData(data, tabletop) {
     if (curEntry[columns[0] + " " + (i+1)] == "") 
       continue;
 
-    console.log("curentry is" + curEntry);
+    console.log("curentry "+ i + " is" + curEntry + " and size is " + size);
     // Loop through columns and insert corresponding value
     for (var j = 0; j < columns.length; j++) {
+
       var td = $("<td>" + curEntry[columns[j] + " " + (i+1)] + "</td>");
 
       if (j == columns.length - 2) // If it's in Rescinded col, add color
@@ -291,7 +281,10 @@ function getStaffingData(data, tabletop) {
     $(tableNumber).append(row);
   }
 
-  $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);
+  if (sheetName == "Sheet2") {
+    $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);
+  }
+  
 }
 
 
