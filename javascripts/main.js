@@ -124,7 +124,7 @@ function showInfo(data) {
           id: "cuestacamp",
           value: 0,
           min: 0,
-          max: 6,
+          max: 5,
           valueFontColor: "black",
           levelColors: resourceLevelColors,
           title: "Cuesta Camp"
@@ -134,7 +134,7 @@ function showInfo(data) {
           id: "venturacamp",
           value: 0,
           min: 0,
-          max: 7,
+          max: 5,
           levelColors: resourceLevelColors,
           title: "Ventura Camp"
         });
