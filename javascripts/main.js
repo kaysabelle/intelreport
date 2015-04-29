@@ -102,14 +102,14 @@ function showInfo(data) {
           title: "Type II Engines SLC"
         });
 
-        var gauge_watertenders = new JustGage({
+        /*var gauge_watertenders = new JustGage({
           id: "watertenders",
           value: 0,
           min: 0,
           max: 3,
           levelColors: resourceLevelColors,
           title: "Water Tenders"
-        });
+        });*/
 
         var gauge_dozers = new JustGage({
           id: "dozers",
@@ -139,7 +139,7 @@ function showInfo(data) {
           title: "Ventura Camp"
         });
 
-        var gauge_overhead = new JustGage({
+        /*var gauge_overhead = new JustGage({
           id: "overhead",
           value: 0,
           min: 0,
@@ -157,7 +157,7 @@ function showInfo(data) {
           valueFontColor: "black",
           levelColors: resourceLevelColors,
           title: "Medics"
-        });
+        });*/
 
         var gauge_mechanics = new JustGage({
           id: "mechanics",
@@ -168,14 +168,14 @@ function showInfo(data) {
           title: "Mechanics"
         });
 
-        var gauge_dozerOperators = new JustGage({
+        /*var gauge_dozerOperators = new JustGage({
           id: "dozeroperators",
           value: 0,
           min: 0,
           max: 5,
           levelColors: resourceLevelColors,
           title: "Dozer Operators"
-        });
+        });*/
 
   gauge_airattack.refresh(data[0].AIR_ATTACK);
   gauge_airtankers.refresh(data[0].AIR_TANKERS);
@@ -187,7 +187,7 @@ function showInfo(data) {
   gauge_cuestacamp.refresh(data[0].CUESTA_CAMP);
   gauge_venturacamp.refresh(data[0].VENTURA_CAMP);
   gauge_mechanics.refresh(data[0].MECHANICS);
-  gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
+  //gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
 
   /* to be added to the Google Sheet later, from other reports */
   //gauge_watertenders.refresh(data[0].WATER_TENDERS);
