@@ -70,7 +70,7 @@ function showInfo(data) {
           id: "copters",
           value: 0,
           min: 0,
-          max: 3,
+          max: 1,
           levelColors: resourceLevelColors,
           title: "Copters"
         });
