@@ -204,7 +204,7 @@ function getWeatherState() {
     type: 'GET',
     success: function(res) {
         console.log(res.responseText);
-        var weatherState = $('p', '<div>' + res.responseText + '</div>').text();
+        var weatherState = res.responseText;
 
         var title = weatherState.slice(
           weatherState.indexOf("SOUTHWEST"),
