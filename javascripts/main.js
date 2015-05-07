@@ -70,7 +70,7 @@ function showInfo(data) {
           id: "copters",
           value: 0,
           min: 0,
-          max: 3,
+          max: 1,
           levelColors: resourceLevelColors,
           title: "Copters"
         });
@@ -102,14 +102,14 @@ function showInfo(data) {
           title: "Type II Engines SLC"
         });
 
-        var gauge_watertenders = new JustGage({
+        /*var gauge_watertenders = new JustGage({
           id: "watertenders",
           value: 0,
           min: 0,
           max: 3,
           levelColors: resourceLevelColors,
           title: "Water Tenders"
-        });
+        });*/
 
         var gauge_dozers = new JustGage({
           id: "dozers",
@@ -124,7 +124,7 @@ function showInfo(data) {
           id: "cuestacamp",
           value: 0,
           min: 0,
-          max: 6,
+          max: 5,
           valueFontColor: "black",
           levelColors: resourceLevelColors,
           title: "Cuesta Camp"
@@ -134,12 +134,12 @@ function showInfo(data) {
           id: "venturacamp",
           value: 0,
           min: 0,
-          max: 3,
+          max: 5,
           levelColors: resourceLevelColors,
           title: "Ventura Camp"
         });
 
-        var gauge_overhead = new JustGage({
+        /*var gauge_overhead = new JustGage({
           id: "overhead",
           value: 0,
           min: 0,
@@ -157,7 +157,7 @@ function showInfo(data) {
           valueFontColor: "black",
           levelColors: resourceLevelColors,
           title: "Medics"
-        });
+        });*/
 
         var gauge_mechanics = new JustGage({
           id: "mechanics",
@@ -168,14 +168,14 @@ function showInfo(data) {
           title: "Mechanics"
         });
 
-        var gauge_dozerOperators = new JustGage({
+        /*var gauge_dozerOperators = new JustGage({
           id: "dozeroperators",
           value: 0,
           min: 0,
           max: 5,
           levelColors: resourceLevelColors,
           title: "Dozer Operators"
-        });
+        });*/
 
   gauge_airattack.refresh(data[0].AIR_ATTACK);
   gauge_airtankers.refresh(data[0].AIR_TANKERS);
@@ -187,7 +187,7 @@ function showInfo(data) {
   gauge_cuestacamp.refresh(data[0].CUESTA_CAMP);
   gauge_venturacamp.refresh(data[0].VENTURA_CAMP);
   gauge_mechanics.refresh(data[0].MECHANICS);
-  gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
+  //gauge_dozerOperators.refresh(data[0].DOZER_OPERATORS);
 
   /* to be added to the Google Sheet later, from other reports */
   //gauge_watertenders.refresh(data[0].WATER_TENDERS);
@@ -199,23 +199,12 @@ function showInfo(data) {
 function getWeatherState() {
   console.log("got weather state");
 
-  // $.ajax({
-  //   url: '/weatherState.txt',
-  //   type: 'GET',
-  //   success: function(res) {
-  //       $("#weatherState").append(res);
-  //   }
-  // });
-
-  // // failsafe
-  // $("#weatherState").load("weatherState.txt");
-
   $.ajax({
     url: 'http://www.crh.noaa.gov/data/LOX/AFDLOX',
     type: 'GET',
     success: function(res) {
         console.log(res.responseText);
-        var weatherState = $('p', '<div>' + res.responseText + '</div>').text();
+        var weatherState = res.responseText;
 
         var title = weatherState.slice(
           weatherState.indexOf("SOUTHWEST"),
@@ -238,61 +227,64 @@ function getWeatherState() {
 }
 
 function getStaffingData(data, tabletop) {
-
+  // Name of columns in record spreasheet
   var columns = [
     "Req Number", 
     "Effective Date/Time", 
     "For",
     "Staffing Pattern Item",
-    "Rescinded Date/Time"];
+    "Rescinded Date/Time",
+    "Strikethrough"];
 
-  console.log("We have Staffing data!");
-  console.log(data);
-  var sheets = tabletop.sheets();
-  var tableNumber;
-  var size;
-  console.log(Object.keys(sheets)[0]);
-  console.log(sheets);
-  if (Object.keys(sheets)[0] == "Sheet2") {
+  var sheets = tabletop.sheets();             // Grab sheet information
+  var tableNumber;                            // Used to know which table to change
+  var sheetName = Object.keys(sheets)[0];     // Sheet name is always first key
+  if (sheetName == "Sheet2") {
     tableNumber = "#staffingpatterntable";
-    size = 12;
   }
   else {
     tableNumber = "#staffingpatterntable2";
-    size = 4;
   }
 
-  console.log(tableNumber);
+  var curEntry = data[data.length - 1];        // Grab last record
 
-  console.log(data.length);
+  // Size calculation: # of columns - 1 for timestamp / 6 different columns
+  var size = (sheets[sheetName].column_names.length - 1) / columns.length;
 
-  var curEntry = data[data.length - 1];
-  // var tableTitle = $("<h4>" + curEntry["Year"] + " - " + curEntry["Title"] + "</h4>");
-    // $(tableNumber).before(tableTitle);
-  // Fill in table for staffing pattern
   for (var i = 0; i < size; i++) {
 
+    // Create new row
     var row = $("<tr>");
-    var req = $("<td>" + curEntry["Req Number " + (i+1)] + "</td>");
-    var eff = $("<td>" + curEntry["Effective Date/Time " + (i+1)] + "</td>");
-    var For = $("<td>" + curEntry["For " + (i+1)] + "</td>");
-    var item = $("<td>" + curEntry["Staffing Pattern Item " + (i+1)] + "</td>");
-    var rescind = $("<td>" + curEntry["Rescinded Date/Time " + (i+1)] + "</td>").css("color", "red");
-    
-    row.append(req);
-    row.append(eff);
-    row.append(For);
-    row.append(item);
-    row.append(rescind);
 
-    if (curEntry["Strikethrough" + (i+1)] == "line-through")
-      row.addClass("strikeout");
+    // If there's nothing there, skip it
+    if (curEntry[columns[0] + " " + (i+1)] == "") 
+      continue;
+
+    console.log("curentry "+ i + " is" + curEntry + " and size is " + size);
+    // Loop through columns and insert corresponding value
+    for (var j = 0; j < columns.length; j++) {
+
+      var td = $("<td>" + curEntry[columns[j] + " " + (i+1)] + "</td>");
+
+      if (j == columns.length - 2) // If it's in Rescinded col, add color
+        td.css("color", "red");
+
+      if (j == columns.length - 1) {// If its strikethrough, check
+        if (curEntry[columns[j] + (i+1)] == "line-through") {
+          row.addClass("strikeout");
+        }
+      }
+      else
+        row.append(td);
+    }
 
     $(tableNumber).append(row);
   }
 
-  $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);
-
+  if (sheetName == "Sheet2") {
+    $("#staffPatternLastUpdated").html("Last Updated: " + curEntry["Last Updated"]);
+  }
+  
 }
 
 

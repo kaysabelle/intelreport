@@ -10,12 +10,22 @@
     <meta name="description" content="INTEL REPORT">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--link rel="stylesheet" type="text/css" media="screen" href="stylesheets/bootstrap.css"-->
     <script src="javascripts/raphael.2.1.0.min.js"></script>
     <script src="javascripts/justgage.1.0.1.min.js"></script>
     <script src="javascripts/tabletop.js"></script>
     <script src="javascripts/main.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="javascripts/jquery.xdomainajax.js"></script>
+    
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36803360-1', 'auto');
+    ga('send', 'pageview');
+    </script>
 
     <title>CAL FIRE SLU INTEL Report</title>
   </head>
@@ -29,7 +39,22 @@
 
           <h1 id="project_title">CAL FIRE SLU INTEL Report</h1>
           <h2 id="project_tagline">Updated <b id="timestamp" style="color: #66D9EF;"></b></h2>
-          <p id="topnav"><a href="#resources">Resources</a> | <a href="#staffing">Staffing Patterns</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind and Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#incidents"> Incidents</a></p>
+          <p id="topnav"><a href="#resources">Resources</a> | <a href="#staffing">Staffing</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind & Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#incidents"> Incidents</a> |  <a href="#links">Links</a><br> 
+
+          <!--a href="https://docs.google.com/spreadsheets/d/1OXTio2Wit5J9szKvQKE8EYQXUXAFDiIRJCSBx57815o/export?format=xlsx" style="color:red">>>Download Admin Report Excel File Here<<</a></p-->
+
+          <ul class="nav navbar-nav navbar-left">
+            <a class="btn btn-default btn-default navbar-btn" href="http://incidents.slocountyfire.org/"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Incident Dashboard</a>
+            <a class="btn btn-default btn-default navbar-btn" href="http://slocountyfire.org/BurnDayStatus/"><span class="glyphicon glyphicon-fire"></span>&nbsp;Burn Day Status</a>
+            <a class="btn btn-default btn-default navbar-btn" href="http://cdb.io/1BytfN9"><span class="glyphicon glyphicon-signal"></span>&nbsp;Dispatch Levels</a>
+            <a class="btn btn-default btn-default navbar-btn" href="http://slocountyfire.org/smokeybear/"><span class="glyphicon glyphicon-tree-conifer"></span>&nbsp;Fire Danger</a>
+            <!--a class="btn btn-default btn-default navbar-btn" href="{% url incident-rss %}"><span class="glyphicon glyphicon-globe"></span>&nbsp;RSS</a-->
+          </ul>
+          <br />
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://docs.google.com/spreadsheets/d/1OXTio2Wit5J9szKvQKE8EYQXUXAFDiIRJCSBx57815o/export?format=xlsx">Download the Admin Report Excel File</a>
+          </section>
         </header>
     </div>
 
@@ -37,6 +62,10 @@
     <div id="main_content_wrap" class="outer clearfix">
       <section id="main-content" class="inner">
         <div style="clear:both;">
+          <div style="clear:both;">
+            <h3><a name="duty">Duty</a></h3>
+          </div>
+          <hr>
           <div id="duty">
             <table>
               <tr>
@@ -69,20 +98,12 @@
           
           <hr>
           <div id="colorLegend" style="width:100%; clear: both;">
-            <div id="color1" class="legendBlock" style="color:#fff; background-color:#008000">Resources > 75%</div>
-            <div id="color2" class="legendBlock" style="color:#000; background-color:#FFFF00">LEVEL 1: 75% to 50%</div>
-            <div id="color3" class="legendBlock" style="color:#fff; background-color:#FF4500">LEVEL 2: 50% to 25%</div>
-            <div id="color4" class="legendBlock" style="color:#fff; background-color:#FF0000">LEVEL 3: < 25%</div>
+            <div id="color1" class="legendBlock" style="color:#fff; background-color:#008000">LEVEL 1: > 75%</div>
+            <div id="color2" class="legendBlock" style="color:#000; background-color:#FFFF00">LEVEL 2: 75% to 50%</div>
+            <div id="color3" class="legendBlock" style="color:#fff; background-color:#FF4500">LEVEL 3: 50% to 25%</div>
+            <div id="color4" class="legendBlock" style="color:#fff; background-color:#FF0000">LEVEL 4: < 25%</div>
           </div><br /><br />
-          <!--div id="gaugeLegend">
-            <ul class="legend">
-              <p>LEGEND</p>
-              <li><span class="green"></span> Resources greater than 75%</li><br />
-              <li><span class="level1"></span> LEVEL 1: 75% to 50%</li><br />
-              <li><span class="level2"></span> LEVEL 2: 50% to 25%</li><br />
-              <li><span class="level3"></span> LEVEL 3: Less than 25%</li><br />
-            </ul>
-          </div-->
+  
           <div id="gauges">
             <div id="firstrow" style="width: 100%; margin: 0 auto; text-align:center; clear:both;">
               <div id="airattack" class="three_gauges"></div>
@@ -95,19 +116,19 @@
               <div id="type2enginesslc" class="three_gauges"></div>
             </div>
             <div id="thirdrow" style="text-align:center; clear:both;">
-              <div id="watertenders" class="two_gauges"></div>
+              <div id="mechanics" class="two_gauges"></div>
               <div id="dozers" class="two_gauges"></div>
             </div>
             <div id="fourthrow" style="text-align:center; clear:both;">
               <div id="cuestacamp" class="two_gauges"></div>
               <div id="venturacamp" class="two_gauges"></div>
             </div>
-            <div id="fifthrow" style="text-align:center; clear:both;">
+            <!--div id="fifthrow" style="text-align:center; clear:both;">
               <div id="overhead" class="four_gauges"></div>
               <div id="medics" class="four_gauges"></div>
               <div id="mechanics" class="four_gauges"></div>
               <div id="dozeroperators" class="four_gauges"></div>
-            </div>
+            </div-->
           </div>
         </div>
         
@@ -127,7 +148,7 @@
                 <td>Rescinded DateTime</td>
               </tr>
             </table>
-            <table id="staffingpatterntable2">
+            <!--<table id="staffingpatterntable2">
               <tr class="staffingpatternheading">
                 <td>Req Number</td>
                 <td>Effective DateTime</td>
@@ -136,6 +157,7 @@
                 <td>Rescinded DateTime</td>
               </tr>
           </table>
+            -->
           <p id="staffPatternLastUpdated">Loading...</p>
 
           </div>
@@ -219,9 +241,43 @@
               Contained Fire: 
               <img src="http://www.fire.ca.gov/fire_protection/images/contained_fire.png" />
             </div>
+          <div class="infosection">
+            <iframe width="100%" height="640px" src="http://www.arcgis.com/apps/PublicInformation/index.html?appid=0c12ac1e89c24075a2be145f4db6caf5" frameborder="0" scrolling="no"></iframe>
+          </div>
           </div>
         </div>
-
+        <div style="clear:both;">
+          <div class="clear:both;">
+            <p><a href="#" style="float:right; margin-top: 8px;">TOP</a></p>
+            <h3><a name="links">Other Links</a></h3><hr>
+          </div>
+          <br>
+          <div class="infosection">
+            <div style="float: left; width: 50%;">
+              <ul style="list-style: none;">
+              <li><a href="http://www.ssd.noaa.gov/PS/FIRE/hms/currenthms.jpg">HMS Fire & Smoke Analysis</a></li>
+              <li><a href="http://raws.wrh.noaa.gov/cgi-bin/roman/meso_base.cgi?stn=ARGC1">RAWS - Arroyo Grande</a></li>
+              <li><a href="http://raws.wrh.noaa.gov/cgi-bin/roman/meso_base.cgi?stn=LPZC1">RAWS - La Panza</a></li>
+              <li><a href="http://raws.wrh.noaa.gov/cgi-bin/roman/meso_base.cgi?stn=TABC1">RAWS - Las Tablas</a></li>
+              <li><a href="http://co-ops.nos.noaa.gov/noaatidepredictions/NOAATidesFacade.jsp?Stationid=9412110">Tides - Port San Luis</a></li>
+              <li><a href="http://earthquake.usgs.gov/earthquakes/map/">Latest Earthquakes</a></li>
+              <li><a href="http://www.geomac.gov/viewer/viewer.shtml">GeoMAC Viewer</a></li>
+              <li><a href="http://tmappsevents.esri.com/website/wildfire-responsive/index.html">US Wildfire Activity Web Map</a></li>
+              </ul>
+              </div>
+            <div style="float: right; width: 50%;">
+              <ul style="list-style: none;">
+              <li><a href="http://www.nifc.gov/nicc/sitreprt.pdf">NIFC - Situation Report</a></li>
+              <li><a href="http://inciweb.nwcg.gov/">InciWeb</a></li>
+              <li><a href="http://gacc.nifc.gov/oscc/predictive/">OSCC Predictive Services</a></li>
+              <li><a href="http://cefa.dri.edu/COFF/cansac_output.htm">CANSAC</a></li>
+              <li><a href="http://www.slocleanair.org/air/AirForcasting_map3.php">Air Quality Forecast - SLOAPCD</a></li>
+              <li><a href="http://www.geomac.gov/asp-bin/GeomacKML/getKML.aspx">GeoMAC KML Files</a></li>
+              <li><a href="https://ssl.arb.ca.gov/pfirs/cb3/cb3.php?id=10">PFIRS - South Central Coast</a></li>
+              </ul>
+            </div>
+          </div>    
+        </div>
       </section>
     </div>
 
