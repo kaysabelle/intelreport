@@ -5,5 +5,5 @@ echo "got intel file!"
 echo "uploading to Dropbox/_data/Intel_Archive"
 FILENAME=adminreport.`date +"%Y%m%d"`.xlsx
 cd ~/intel_archive
-bash ~/shell_scripts/dropbox_uploader.sh upload $FILENAME _data/Intel_Archive
+bash ~/shell_scripts/dropbox_uploader.sh upload $FILENAME Public/admin-reports
 echo "successfully uploaded! $FILENAME"
