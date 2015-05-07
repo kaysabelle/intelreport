@@ -10,6 +10,7 @@
     <meta name="description" content="INTEL REPORT">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--link rel="stylesheet" type="text/css" media="screen" href="stylesheets/bootstrap.css"-->
     <script src="javascripts/raphael.2.1.0.min.js"></script>
     <script src="javascripts/justgage.1.0.1.min.js"></script>
     <script src="javascripts/tabletop.js"></script>
@@ -38,9 +39,22 @@
 
           <h1 id="project_title">CAL FIRE SLU INTEL Report</h1>
           <h2 id="project_tagline">Updated <b id="timestamp" style="color: #66D9EF;"></b></h2>
-          <p id="topnav"><a href="#resources">Resources</a> | <a href="#staffing">Staffing Patterns</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind & Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#incidents"> Incidents</a> |  <a href="#links">Links</a><br> 
+          <p id="topnav"><a href="#resources">Resources</a> | <a href="#staffing">Staffing</a> | <a href="#weather">Weather</a> | <a href="#windtides">Wind & Tides</a> | <a href="#fuelmoisture">Fuel Moisture</a> |  <a href="#drought">Drought</a> | <a href="#incidents"> Incidents</a> |  <a href="#links">Links</a><br> 
 
-          <a href="https://docs.google.com/spreadsheets/d/1OXTio2Wit5J9szKvQKE8EYQXUXAFDiIRJCSBx57815o/export?format=xlsx" style="color:red">>>Download Admin Report Excel File Here<<</a></p>
+          <!--a href="https://docs.google.com/spreadsheets/d/1OXTio2Wit5J9szKvQKE8EYQXUXAFDiIRJCSBx57815o/export?format=xlsx" style="color:red">>>Download Admin Report Excel File Here<<</a></p-->
+
+          <ul class="nav navbar-nav navbar-left">
+            <a class="btn btn-default btn-default navbar-btn" href="http://incidents.slocountyfire.org/"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Incident Dashboard</a>
+            <a class="btn btn-default btn-default navbar-btn" href="http://slocountyfire.org/BurnDayStatus/"><span class="glyphicon glyphicon-fire"></span>&nbsp;Burn Day Status</a>
+            <a class="btn btn-default btn-default navbar-btn" href="http://cdb.io/1BytfN9"><span class="glyphicon glyphicon-signal"></span>&nbsp;Dispatch Levels</a>
+            <a class="btn btn-default btn-default navbar-btn" href="http://slocountyfire.org/smokeybear/"><span class="glyphicon glyphicon-tree-conifer"></span>&nbsp;Fire Danger</a>
+            <!--a class="btn btn-default btn-default navbar-btn" href="{% url incident-rss %}"><span class="glyphicon glyphicon-globe"></span>&nbsp;RSS</a-->
+          </ul>
+          <br />
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://docs.google.com/spreadsheets/d/1OXTio2Wit5J9szKvQKE8EYQXUXAFDiIRJCSBx57815o/export?format=xlsx">Download the Admin Report Excel File</a>
+          </section>
         </header>
     </div>
 
@@ -48,6 +62,10 @@
     <div id="main_content_wrap" class="outer clearfix">
       <section id="main-content" class="inner">
         <div style="clear:both;">
+          <div style="clear:both;">
+            <h3><a name="duty">Duty</a></h3>
+          </div>
+          <hr>
           <div id="duty">
             <table>
               <tr>
